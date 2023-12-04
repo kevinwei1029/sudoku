@@ -26,8 +26,5 @@
     <ClInclude Include="print.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="varibles.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
