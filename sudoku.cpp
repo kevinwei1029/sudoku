@@ -33,5 +33,6 @@ using namespace std;
 
 int main()
 {
+    pt(2, 0, 0);
     cout << "Hello World!\n";
 }
