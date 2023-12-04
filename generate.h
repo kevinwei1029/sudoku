@@ -71,7 +71,7 @@ public:
         fillr(0, SRN);
 
         // Remove Randomly K digits to make game
-        //removeKDigits();
+        //rkd();
     }
 
     // Fill the diagonal SRN number of SRN x SRN matrices
@@ -112,12 +112,12 @@ public:
             }
         }
     }
-    // Random generator
+    /* Random generator
     int randomGenerator(int num)
     {
         return (int)floor(
             (float)(rand() / double(RAND_MAX) * num + 1));
-    }
+    }*/
     // Check if safe to put in cell
     bool CheckIfSafe(int i, int j, int num)
     {
@@ -187,18 +187,22 @@ public:
         return false;
     }
     // Remove the K no. of digits to complete game
-    void removeKDigits()
+    void rkd()
     {
+        mt19937 mt(time(nullptr));
         int count = K;
         while (count != 0) {
-            int cellId = randomGenerator(N * N) - 1;
+            //int cellId = randomGenerator(N * N) - 1;
+            int cellId = mt() % (N * N);
             // System.out.println(cellId);
             // extract coordinates i and j
-            int i = (cellId / N);
-            int j = cellId % N;
-            if (j != 0) {
+            //int i = (cellId / N);
+            //int j = cellId % N;
+            int i = mt() % N;
+            int j = mt() % N;
+            /*if (j != 0) {
                 j = j - 1;
-            }
+            }*/
             // System.out.println(i+" "+j);
             if (mat[i][j] != 0) {
                 count--;
