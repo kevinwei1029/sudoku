@@ -1,6 +1,8 @@
 //  Codes in this file generate the quesion
 #include <bits/stdc++.h>
 #include <windows.h>
+#include <random>
+#include <Windows.h>
 using namespace std;
 
 int sta, x = 0, y = 0;
@@ -98,11 +100,13 @@ public:
     // Fill a 3 x 3 matrix.
     void fillBox(int row, int col)
     {
+        mt19937 mt(time(nullptr));
         int num;
         for (int i = 0; i < SRN; i++) {
             for (int j = 0; j < SRN; j++) {
                 do {
-                    num = randomGenerator(N);
+                    //num = randomGenerator(N);
+                    num = mt() % N + 1;
                 } while (!unb(row, col, num));
                 mat[row + i][col + j] = num;
             }
