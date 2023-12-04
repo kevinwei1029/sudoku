@@ -59,14 +59,14 @@ public:
     }
 
     // Sudoku Generator
-    void fillValues()
+    void fill()
     {
 
         // Fill the diagonal of SRN x SRN matrices
         fillDiagonal();
 
         // Fill remaining blocks
-        fillRemaining(0, SRN);
+        fillr(0, SRN);
 
         // Remove Randomly K digits to make game
         //removeKDigits();
@@ -83,7 +83,7 @@ public:
         }
     }
     // Returns false if given 3 x 3 block contains num.
-    bool unUsedInBox(int rowStart, int colStart, int num)
+    bool unb(int rowStart, int colStart, int num)
     {
         for (int i = 0; i < SRN; i++) {
             for (int j = 0; j < SRN; j++) {
@@ -103,7 +103,7 @@ public:
             for (int j = 0; j < SRN; j++) {
                 do {
                     num = randomGenerator(N);
-                } while (!unUsedInBox(row, col, num));
+                } while (!unb(row, col, num));
                 mat[row + i][col + j] = num;
             }
         }
@@ -118,11 +118,11 @@ public:
     bool CheckIfSafe(int i, int j, int num)
     {
         return (
-            unUsedInRow(i, num) && unUsedInCol(j, num)
-            && unUsedInBox(i - i % SRN, j - j % SRN, num));
+            unr(i, num) && unc(j, num)
+            && unb(i - i % SRN, j - j % SRN, num));
     }
     // check in the row for existence
-    bool unUsedInRow(int i, int num)
+    bool unr(int i, int num)
     {
         for (int j = 0; j < N; j++) {
             if (mat[i][j] == num) {
@@ -132,7 +132,7 @@ public:
         return true;
     }
     // check in the row for existence
-    bool unUsedInCol(int j, int num)
+    bool unc(int j, int num)
     {
         for (int i = 0; i < N; i++) {
             if (mat[i][j] == num) {
@@ -141,9 +141,8 @@ public:
         }
         return true;
     }
-    // A recursive function to fill remaining
-    // matrix
-    bool fillRemaining(int i, int j)
+    // A recursive function to fill remaining matrix
+    bool fillr(int i, int j)
     {
         // System.out.println(i+" "+j);
         if (j >= N && i < N - 1) {
@@ -175,7 +174,7 @@ public:
         for (int num = 1; num <= N; num++) {
             if (CheckIfSafe(i, j, num)) {
                 mat[i][j] = num;
-                if (fillRemaining(i, j + 1)) {
+                if (fillr(i, j + 1)) {
                     return true;
                 }
                 mat[i][j] = 0;
@@ -183,8 +182,7 @@ public:
         }
         return false;
     }
-    // Remove the K no. of digits to
-    // complete game
+    // Remove the K no. of digits to complete game
     void removeKDigits()
     {
         int count = K;
@@ -216,12 +214,14 @@ public:
         }
         cout << endl;
     }
+
     void ptv(int n, char a) {
         for (int i = 0; i < ((n + 1) * (n + 1) + 2 * n * n); i++) {  //  i < n+1 + (n+1)*n + 2*n*n
             cout << a;
         }
         cout << "\n";  //  print a vertical line
     };
+
     void pt(int n, int x, int y) {
         sta = n;
         this->ptv(n, '-');
