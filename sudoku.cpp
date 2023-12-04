@@ -28,19 +28,20 @@ sta = status :
 t2, t3, t4 = array for testing use
 */
 #include <bits/stdc++.h>
-#include "print.h"
+#include "generate.h"
 
 int main(){
-    ///*
+    /*
     pt(2, 0, 0);
     pt(3, 0, 0);
     cout << "Hello World!\n";
-    //*/
+    */
     ///*
-    int N = 9;
+    int N = 16;
     int K = 20;
     Sudoku* sudoku = new Sudoku(N, K);
     sudoku->fillValues();
-    sudoku->printSudoku();
+    //sudoku->printSudoku();
+    sudoku->pt(sqrt(N), 0, 0);
     //*/
 }

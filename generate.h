@@ -23,9 +23,6 @@ int t3[9][9] = {
 	{0, 2, 0, 4, 0, 2, 0, 4, 5},
 };
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Sudoku {
 public:
     int** mat;
@@ -52,7 +49,6 @@ public:
         // Create a row for every pointer
         for (int i = 0; i < N; i++)
         {
-
             // Note : Rows may not be contiguous
             mat[i] = new int[N];
 
@@ -73,7 +69,7 @@ public:
         fillRemaining(0, SRN);
 
         // Remove Randomly K digits to make game
-        removeKDigits();
+        //removeKDigits();
     }
 
     // Fill the diagonal SRN number of SRN x SRN matrices
@@ -213,21 +209,40 @@ public:
     {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                cout << to_string(mat[i][j]) + " ";
+                cout << setw(3) << to_string(mat[i][j]) + " ";
+                //cout << setw(2) << mat[i][j] + " ";
             }
             cout << endl;
         }
         cout << endl;
     }
+    void ptv(int n, char a) {
+        for (int i = 0; i < ((n + 1) * (n + 1) + 2 * n * n); i++) {  //  i < n+1 + (n+1)*n + 2*n*n
+            cout << a;
+        }
+        cout << "\n";  //  print a vertical line
+    };
+    void pt(int n, int x, int y) {
+        sta = n;
+        this->ptv(n, '-');
+        for (int i = 0; i < N; i++) {
+            cout << "|";
+            for (int j = 0; j < N; j++) {
+                if (t3[i][j] == 0) {
+                    cout << " __";
+                }
+                else {
+                    cout << setw(3) << mat[i][j];
+                }
+                if (j % n == n - 1) {
+                    cout << " |";
+                }
+            }
+            cout << endl;
+            if (i % n == n - 1) {
+                this->ptv(n, '-');
+            }
+        }
+        cout << "press 'ESC' to leave\n\n\n";
+    };
 };
-
-/* Driver code
-int main()
-{
-    int N = 9;
-    int K = 20;
-    Sudoku* sudoku = new Sudoku(N, K);
-    sudoku->fillValues();
-    sudoku->printSudoku();
-    return 0;
-}*/
