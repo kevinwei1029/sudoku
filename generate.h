@@ -205,7 +205,7 @@ public:
         }
     }
     // Print sudoku
-    void printSudoku()
+    void ptSudoku()
     {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
@@ -232,7 +232,7 @@ public:
                     SetColor(11);
                 }
 
-                if (t3[i][j] == 0) {
+                if (mat[i][j] == 0) {
                     cout << " __";
                 }
                 else {
