@@ -3,33 +3,33 @@
 #include "generate.h"
 using namespace std;
 
-void ptv(int n) {
+void ptv(int n, char a) {
 	for (int i = 0; i < ((n + 1) * (n + 1) + 2 * n * n); i++) {  //  i < n+1 + (n+1)*n + 2*n*n
-		cout << "_";
+		cout << a;
 	}
 	cout << "\n";  //  print a vertical line
 };
 
 void pt(int n, int x, int y) {
 	sta = n;
-	ptv(n);
-	for (int m = 0; m < n; m++) {
-		for (int l = 0; l < n; l++) {
-			for (int k = 0; k < n; k++) {
-				for (int i = 0; i < n; i++) {
-					cout << "|";
-					for (int j = 0; j < n; j++) {
-						if (t2[i + l][j + k] != 0)
-							cout << " " << setw(2) << t2[i + l][j + k];
-						else
-							cout << " __";
-					}
-					cout << " ";
-				}
-				cout << "|";  //  pt n numbers
+	ptv(n, '-');
+	for (int i = 0; i < n * n; i++) {
+		cout << "|";
+		for (int j = 0; j < n * n; j++) {
+			if (t2[i][j] == 0) {
+				cout << " __";
 			}
-			cout << "|\n";//  pt a line
+			else {
+				cout << setw(3) << t2[i][j];
+			}
+			if (j % n == n - 1) {
+				cout << " |";
+			}
 		}
-		ptv(n);
+		cout << endl;
+		if (i % n == n - 1) {
+			ptv(n, '-');
+		}
 	}
+	cout << "Enter"
 };

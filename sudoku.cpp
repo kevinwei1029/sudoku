@@ -29,10 +29,8 @@ t2, t3, t4 = array for testing use
 */
 #include <bits/stdc++.h>
 #include "print.h"
-using namespace std;
 
-int main()
-{
+int main(){
     pt(2, 0, 0);
     cout << "Hello World!\n";
 }
