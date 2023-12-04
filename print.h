@@ -16,11 +16,11 @@ void pt(int n, int x, int y) {
 	for (int i = 0; i < n * n; i++) {
 		cout << "|";
 		for (int j = 0; j < n * n; j++) {
-			if (t2[i][j] == 0) {
+			if (t3[i][j] == 0) {
 				cout << " __";
 			}
 			else {
-				cout << setw(3) << t2[i][j];
+				cout << setw(3) << t3[i][j];
 			}
 			if (j % n == n - 1) {
 				cout << " |";
@@ -31,5 +31,5 @@ void pt(int n, int x, int y) {
 			ptv(n, '-');
 		}
 	}
-	cout << "Enter"
+	cout << "press 'ESC' to leave\n\n\n";
 };

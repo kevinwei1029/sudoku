@@ -31,6 +31,7 @@ t2, t3, t4 = array for testing use
 #include "print.h"
 
 int main(){
-    pt(2, 0, 0);
+    //pt(2, 0, 0);
+    pt(3, 0, 0);
     cout << "Hello World!\n";
 }
