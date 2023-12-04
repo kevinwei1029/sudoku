@@ -16,10 +16,15 @@ sudoku.cpp : 此檔案包含 'main' 函式。程式會於該處開始執行及�
   sudoku.cpp
   ﹂print.h
     ﹂generate.h
-
-簡寫變數/函式名稱意義說明：
+*/
+/*簡寫變數 / 函式名稱意義說明：
 ans = answer of sudoku
 que = quesion
+sta = status : 
+            1 = main page
+            2 = 4*4
+            3 = 9*9
+            4 = 16*16
 */
 #include <bits/stdc++.h>
 #include "print.h"
