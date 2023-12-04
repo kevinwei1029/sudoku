@@ -21,6 +21,7 @@ sudoku.cpp : 此檔案包含 'main' 函式。程式會於該處開始執行及�
 簡寫變數/函式名稱意義說明：
 */
 #include <bits/stdc++.h>
+#include "print.h"
 using namespace std;
 
 int main()
