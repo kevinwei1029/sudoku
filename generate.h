@@ -1,9 +1,9 @@
 //  Codes in this file generate the quesion
 #include <bits/stdc++.h>
-#include <Windows.h>
+#include <windows.h>
 using namespace std;
 
-int sta;
+int sta, x = 0, y = 0;
 
 int t2[4][4] = {
 	{0, 2, 0, 4},
@@ -228,12 +228,17 @@ public:
         for (int i = 0; i < N; i++) {
             cout << "|";
             for (int j = 0; j < N; j++) {
+                if (i == x && j == y) {
+                    SetColor(11);
+                }
+
                 if (t3[i][j] == 0) {
                     cout << " __";
                 }
                 else {
                     cout << setw(3) << mat[i][j];
                 }
+                SetColor();
                 if (j % n == n - 1) {
                     cout << " |";
                 }
@@ -245,4 +250,10 @@ public:
         }
         cout << "press 'ESC' to leave\n\n\n";
     };
+    void SetColor(int color = 7)
+    {
+        HANDLE hConsole;
+        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, color);
+    }
 };

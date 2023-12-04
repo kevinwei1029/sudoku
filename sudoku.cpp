@@ -37,11 +37,45 @@ int main(){
     cout << "Hello World!\n";
     */
     ///*
-    int N = 16;
-    int K = 20;
-    Sudoku* sudoku = new Sudoku(N, K);
-    sudoku->fillValues();
-    //sudoku->printSudoku();
-    sudoku->pt(sqrt(N), 0, 0);
+    int N = 16, K = 20;
+    char n;
+    sta = 2;
+    switch (sta) {
+    case 1:
+        cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
+        cin >> n;
+        while (!(n == '2' || n == '3' || n == '4')) {
+            cout << "ERROR\nEnter again";
+            cin >> n;
+        }
+        N = (n - '0') * (n - '0');
+        cout << N << endl;
+        exit(0);
+        sta = 2;
+
+    case 2:
+        cout << "ckp1\n";
+        Sudoku* sudoku = new Sudoku(N, K);
+        sudoku->fillValues();
+        while (1) {
+            //sudoku->printSudoku();
+            cin >> n;
+            if (n == 105 && x-1 >= 0) {  //  upward
+                x -= 1;
+            }
+            else if (n == 106 && y-1 >= 0) {  //  left
+                y -= 1;
+            }
+            else if (n == 107 && x+1 < N) {  //  down
+                x += 1;
+            }
+            else if (n == 108 && y+1 < N) {  //  right
+                y += 1;
+            }
+
+            sudoku->pt(sqrt(N), x, y);
+        }
+            break;
+    }
     //*/
 }
