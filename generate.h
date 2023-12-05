@@ -28,14 +28,15 @@ int t3[9][9] = {
 class Sudoku {
 public:
     int** mat;
-    int N;
+    int** ans;
+    
 
     // number of columns/rows.
-    int SRN;
-
+    int N;
     // square root of N
-    int K;
+    int SRN;
     // No. Of missing digits
+    int K;
 
     // Constructor
     Sudoku(int N, int K)
@@ -47,16 +48,19 @@ public:
         double SRNd = sqrt(N);
         SRN = (int)SRNd;
         mat = new int* [N];
+        ans = new int* [N];
 
         // Create a row for every pointer
         for (int i = 0; i < N; i++)
         {
             // Note : Rows may not be contiguous
             mat[i] = new int[N];
+            ans[i] = new int[N];
 
             // Initialize all entries as false to indicate
             // that there are no edges initially
             memset(mat[i], 0, N * sizeof(int));
+            memset(ans[i], 0, N * sizeof(int));
         }
     }
 
@@ -70,8 +74,14 @@ public:
         // Fill remaining blocks
         fillr(0, SRN);
 
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                ans[i][j] = mat[i][j];
+            }
+        }
+
         // Remove Randomly K digits to make game
-        //rkd();
+        rkd();
     }
 
     // Fill the diagonal SRN number of SRN x SRN matrices

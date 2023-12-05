@@ -19,6 +19,7 @@ sta = status :
             1 = main page
             2 = in game
 t2, t3, t4 = array for testing use
+x, y = as smae as i and j which indicates where you are in the array
 N = n * n
 K = numbers to remove
 unr = unused in row
