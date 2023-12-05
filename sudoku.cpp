@@ -45,7 +45,7 @@ int main(){
     
     int N = 9, K = 20;
     char n;
-    sta = 1;
+    sta = 2;
     switch (sta) {
         case 1:
             cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
@@ -63,6 +63,7 @@ int main(){
             Sudoku* sudoku = new Sudoku(N, K);
             sudoku->fill();
             //sudoku->ptSudoku();
+            //exit(0);
             while (1) {
                 ///*
                 sudoku->pt(sqrt(N), x, y);
@@ -85,6 +86,6 @@ int main(){
                 }
                 //*/
             }
-                break;
+            break;
     }
 }

@@ -77,6 +77,8 @@ public:
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 ans[i][j] = mat[i][j];
+                cout << "ans [" << i << "][" << j << "] = " << ans[i][j] << endl;
+                //cout << "ans [" << i << "][" << j << "] was given by mat[" << i << "][" << j << "]\n";
             }
         }
 
@@ -94,19 +96,7 @@ public:
             fillBox(i, i);
         }
     }
-    // Returns false if given 3 x 3 block contains num.
-    bool unb(int rowStart, int colStart, int num)
-    {
-        for (int i = 0; i < SRN; i++) {
-            for (int j = 0; j < SRN; j++) {
-                if (mat[rowStart + i][colStart + j]
-                    == num) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+
     // Fill a 3 x 3 matrix.
     void fillBox(int row, int col)
     {
@@ -122,39 +112,7 @@ public:
             }
         }
     }
-    /* Random generator
-    int randomGenerator(int num)
-    {
-        return (int)floor(
-            (float)(rand() / double(RAND_MAX) * num + 1));
-    }*/
-    // Check if safe to put in cell
-    bool CheckIfSafe(int i, int j, int num)
-    {
-        return (
-            unr(i, num) && unc(j, num)
-            && unb(i - i % SRN, j - j % SRN, num));
-    }
-    // check in the row for existence
-    bool unr(int i, int num)
-    {
-        for (int j = 0; j < N; j++) {
-            if (mat[i][j] == num) {
-                return false;
-            }
-        }
-        return true;
-    }
-    // check in the row for existence
-    bool unc(int j, int num)
-    {
-        for (int i = 0; i < N; i++) {
-            if (mat[i][j] == num) {
-                return false;
-            }
-        }
-        return true;
-    }
+
     // A recursive function to fill remaining matrix
     bool fillr(int i, int j)
     {
@@ -196,6 +154,57 @@ public:
         }
         return false;
     }
+
+    /* Random generator
+    int randomGenerator(int num)
+    {
+        return (int)floor(
+            (float)(rand() / double(RAND_MAX) * num + 1));
+    }*/
+    // Check if safe to put in cell
+    bool CheckIfSafe(int i, int j, int num)
+    {
+        return (
+            unr(i, num) && unc(j, num)
+            && unb(i - i % SRN, j - j % SRN, num));
+    }
+
+    // Returns false if given 3 x 3 block contains num.
+    bool unb(int rowStart, int colStart, int num)
+    {
+        for (int i = 0; i < SRN; i++) {
+            for (int j = 0; j < SRN; j++) {
+                if (mat[rowStart + i][colStart + j]
+                    == num) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    // check in the row for existence
+    bool unr(int i, int num)
+    {
+        for (int j = 0; j < N; j++) {
+            if (mat[i][j] == num) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // check in the row for existence
+    bool unc(int j, int num)
+    {
+        for (int i = 0; i < N; i++) {
+            if (mat[i][j] == num) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // Remove the K no. of digits to complete game
     void rkd()
     {
@@ -220,19 +229,22 @@ public:
             }
         }
     }
-    // Print sudoku
+
+    //  print sudoku
     void ptSudoku()
     {
+        cout << "Now pt ans[][]";
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                cout << setw(3) << to_string(mat[i][j]) + " ";
-                //cout << setw(2) << mat[i][j] + " ";
+                cout << setw(3) << to_string(ans[i][j]) + " ";
+                //cout << setw(3) << to_string(mat[i][j]) + " ";
             }
             cout << endl;
         }
         cout << endl;
     }
 
+    //  print something vertical
     void ptv(int n, char a) {
         for (int i = 0; i < ((n + 1) * (n + 1) + 2 * n * n); i++) {  //  i < n+1 + (n+1)*n + 2*n*n
             cout << a;
@@ -240,6 +252,7 @@ public:
         cout << "\n";  //  print a vertical line
     };
 
+    //  print the sudoku pattren
     void pt(int n, int x, int y) {
         sta = n;
         this->ptv(n, '-');
@@ -268,6 +281,8 @@ public:
         }
         cout << "press 'ESC' to leave\n\n\n";
     };
+
+    //  set the color of output
     void SetColor(int color = 7)
     {
         HANDLE hConsole;
