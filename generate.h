@@ -69,7 +69,6 @@ public:
     // Sudoku Generator
     void fill()
     {
-        int ans[16][16] = { 0 };
         // Fill the diagonal of SRN x SRN matrices
         fillDiagonal();
 
