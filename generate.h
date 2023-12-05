@@ -32,6 +32,7 @@ public:
     //  declear 2D array pointer
     int** mat;
     int** ans;
+    int** que;
 
     //  number of columns and rows.
     int N;
@@ -51,6 +52,7 @@ public:
         SRN = (int)SRNd;
         mat = new int* [N];
         ans = new int* [N];
+        que = new int* [N];
 
         // Create a row for every pointer
         for (int i = 0; i < N; i++)
@@ -58,11 +60,13 @@ public:
             // Note : Rows may not be contiguous
             mat[i] = new int[N];
             ans[i] = new int[N];
+            que[i] = new int[N];
 
             // Initialize all entries as false to indicate
             // that there are no edges initially
             memset(mat[i], 0, N * sizeof(int));
             memset(ans[i], 0, N * sizeof(int));
+            memset(que[i], 0, N * sizeof(int));
         }
     }
 
@@ -85,6 +89,14 @@ public:
 
         // Remove Randomly K digits to make game
         rkd();
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                que[i][j] = mat[i][j];
+                //cout << "ans [" << i << "][" << j << "] = " << ans[i][j] << endl;
+                //cout << "ans [" << i << "][" << j << "] was given by mat[" << i << "][" << j << "]\n";
+            }
+        }
     }
 
     // Fill the diagonal SRN number of SRN x SRN matrices
@@ -263,8 +275,9 @@ public:
 
     //  print the sudoku pattren
     void pt(int n, int x, int y, int uin) {
-        if(uin != 0) mat[x][y] = uin;
-        //sta = n;
+        if (uin != 0 && que[x][y] == 0) {
+            mat[x][y] = uin;
+        }
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
             cout << "|";
@@ -272,14 +285,22 @@ public:
                 if (i == x && j == y) {
                     SetColor(11);
                 }
+                else if (mat[i][j] == ans[i][j]) {  //  correct answer
+                    SetColor(10);
+                }
+                else if (mat[i][j] != ans[i][j]) {  //  wrong answer
+                    SetColor(12);
+                }
 
-                if (mat[i][j] == 0) {
+                if (mat[i][j] == 0 && que[x][y] == 0) {
                     cout << " __";
                 }
                 else {
-                    cout << setw(3) << mat[i][j];
+                    cout << setw(3) << mat[i][j] + que[i][j];
                 }
+
                 SetColor();
+
                 if (j % n == n - 1) {
                     cout << " |";
                 }
