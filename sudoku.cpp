@@ -32,15 +32,6 @@ rkd = remove k digits
 #include "generate.h"
 
 int main() {
-    /*
-    pt(2, 0, 0);
-    pt(3, 0, 0);
-    cout << "Hello World!\n";
-    Sudoku* sudoku = new Sudoku(9, 20);
-    for (int i = 0; i < 30; i++) {
-        cout << "i = " << 2*i + 5 << " and geRe = " << sudoku->randomGenerator(2*i+5) << endl;
-    }
-    */
     int N = 4, K = 20;
     char n;
     while(1){
@@ -98,4 +89,5 @@ int main() {
             break;
         }
     }
+    return 0;
 }
