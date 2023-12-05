@@ -44,9 +44,9 @@ int main(){
     
     int N = 9, K = 20;
     char n;
-    sta = 2;
+    sta = 1;
     switch (sta) {
-        case 1:
+        case 1:  //  main page
             cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
             cin >> n;
             while (!(n == '2' || n == '3' || n == '4')) {
@@ -57,8 +57,9 @@ int main(){
             //cout << N << endl;
             //exit(0);
             sta = 2;
+            
 
-        case 2:
+        case 2:  //  in game
             Sudoku* sudoku = new Sudoku(N, K);
             sudoku->fill();
             //sudoku->ptSudoku('a');

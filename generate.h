@@ -66,10 +66,10 @@ public:
         }
     }
 
-    // Sudoku Generator
+    //  Sudoku Generator
     void fill()
     {
-        // Fill the diagonal of SRN x SRN matrices
+        //  Fill the diagonal of SRN x SRN matrices
         fillDiagonal();
 
         // Fill remaining blocks
@@ -78,7 +78,7 @@ public:
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 ans[i][j] = mat[i][j];
-                cout << "ans [" << i << "][" << j << "] = " << ans[i][j] << endl;
+                //cout << "ans [" << i << "][" << j << "] = " << ans[i][j] << endl;
                 //cout << "ans [" << i << "][" << j << "] was given by mat[" << i << "][" << j << "]\n";
             }
         }
@@ -213,7 +213,7 @@ public:
         int count = K;
         while (count != 0) {
             //int cellId = randomGenerator(N * N) - 1;
-            int cellId = mt() % (N * N);
+            //int cellId = mt() % (N * N);
             // System.out.println(cellId);
             // extract coordinates i and j
             //int i = (cellId / N);
@@ -241,7 +241,7 @@ public:
                     cout << setw(3) << to_string(ans[i][j]) + " ";
                 }
                 else if (a == 'm') {
-                    cout << "Now pt amt[][] : \n";
+                    cout << "Now pt mat[][] : \n";
                     cout << setw(3) << to_string(mat[i][j]) + " ";
                 }
                 else {
@@ -263,7 +263,7 @@ public:
 
     //  print the sudoku pattren
     void pt(int n, int x, int y) {
-        sta = n;
+        //sta = n;
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
             cout << "|";
@@ -292,6 +292,7 @@ public:
     };
 
     //  set the color of output
+    //  website : 
     void SetColor(int color = 7)
     {
         HANDLE hConsole;
