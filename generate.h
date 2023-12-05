@@ -7,6 +7,8 @@ using namespace std;
 
 int sta, x = 0, y = 0;
 
+//  testing int array
+/*
 int t2[4][4] = {
 	{0, 2, 0, 4},
 	{1, 0, 3, 2},
@@ -23,7 +25,7 @@ int t3[9][9] = {
 	{0, 2, 0, 4, 0, 2, 0, 4, 5},
 	{0, 2, 0, 4, 0, 2, 0, 4, 5},
 	{0, 2, 0, 4, 0, 2, 0, 4, 5},
-};
+};*/
 
 class Sudoku {
 public:
