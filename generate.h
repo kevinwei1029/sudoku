@@ -232,13 +232,21 @@ public:
     }
 
     //  print sudoku
-    void ptSudoku()
+    void ptSudoku(char a)
     {
-        cout << "Now pt ans[][] : \n";
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                cout << setw(3) << to_string(ans[i][j]) + " ";
-                //cout << setw(3) << to_string(mat[i][j]) + " ";
+                if (a == 'a') {
+                    cout << "Now pt ans[][] : \n";
+                    cout << setw(3) << to_string(ans[i][j]) + " ";
+                }
+                else if (a == 'm') {
+                    cout << "Now pt amt[][] : \n";
+                    cout << setw(3) << to_string(mat[i][j]) + " ";
+                }
+                else {
+                    cout << "It's strang since this function dosen't lnow what to print.";
+                }
             }
             cout << endl;
         }

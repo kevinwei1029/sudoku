@@ -62,8 +62,8 @@ int main(){
         case 2:
             Sudoku* sudoku = new Sudoku(N, K);
             sudoku->fill();
-            sudoku->ptSudoku();
-            exit(0);
+            //sudoku->ptSudoku('a');
+            //exit(0);
             while (1) {
                 ///*
                 sudoku->pt(sqrt(N), x, y);
