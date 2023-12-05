@@ -29,7 +29,6 @@ fill = create the basic pattren
 fillr = fill in the remaining blanks
 rkd = remove k digits
 */
-#include <bits/stdc++.h>
 #include "generate.h"
 
 int main(){
