@@ -5,7 +5,7 @@
 #include <Windows.h>
 using namespace std;
 
-int x = 0, y = 0;
+int x = 0, y = 0, sta = 1;
 
 //  testing int array
 /*
@@ -40,8 +40,6 @@ public:
     int SRN;
     //  numbers of missing digits
     int K;
-
-    int sta = 1;
 
     //  if sudoku end
     bool ise;
@@ -321,7 +319,6 @@ public:
     //  print congradulation
     void ptc() {
         cout << "congradulations!\n\n";
-        sta = 1;
     };
 
     //  set the color of output

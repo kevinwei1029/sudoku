@@ -31,7 +31,7 @@ rkd = remove k digits
 */
 #include "generate.h"
 
-int main(){
+int main() {
     /*
     pt(2, 0, 0);
     pt(3, 0, 0);
@@ -44,7 +44,8 @@ int main(){
     int N = 16, K = 20;
     char n;
     Sudoku* sudoku = new Sudoku(N, K);
-    switch (sudoku->sta) {
+    while(1){
+        switch (sudoku->sta) {
         case 1:  //  main page
             cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
             cin >> n;
@@ -67,7 +68,7 @@ int main(){
             else if (n == 'M') {
                 K = 0.6 * N * N;
             }
-            else if(n == 'H') {
+            else if (n == 'H') {
                 K = 0.75 * N * N;
             }
             else if (n == 'T') {
@@ -76,9 +77,10 @@ int main(){
             //cout << N << endl;
             //exit(0);
             sudoku->sta = 2;
-            
+            break;
+
         case 2:  //  in game
-            Sudoku* sudoku = new Sudoku(N, K);
+            Sudoku * sudoku = new Sudoku(N, K);
             sudoku->fill();
             sudoku->pt(sqrt(N), x, y, 0);
             //sudoku->ptSudoku('a');
@@ -87,10 +89,10 @@ int main(){
             while (n != 27) {  //  n != esc
                 ///*
                 n = tolower(n);
-                if (n == 105 && x-1 >= 0) x -= 1;  //  upward
-                else if (n == 106 && y-1 >= 0) y -= 1;  //  left
-                else if (n == 107 && x+1 < N) x += 1;  //  down
-                else if (n == 108 && y+1 < N) y += 1;  //  right
+                if (n == 105 && x - 1 >= 0) x -= 1;  //  upward
+                else if (n == 106 && y - 1 >= 0) y -= 1;  //  left
+                else if (n == 107 && x + 1 < N) x += 1;  //  down
+                else if (n == 108 && y + 1 < N) y += 1;  //  right
 
                 sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
 
@@ -99,7 +101,7 @@ int main(){
                 cin >> n;
                 //*/
             }
-            sudoku->sta = 1;
-            //break;
+            break;
+        }
     }
 }
