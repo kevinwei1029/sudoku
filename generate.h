@@ -1,8 +1,5 @@
 //  Codes in this file generate the quesion
 #include <bits/stdc++.h>
-#include <windows.h>
-#include <random>
-#include <Windows.h>
 using namespace std;
 
 int x = 0, y = 0, sta = 1;
