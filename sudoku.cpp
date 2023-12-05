@@ -41,9 +41,8 @@ int main() {
         cout << "i = " << 2*i + 5 << " and geRe = " << sudoku->randomGenerator(2*i+5) << endl;
     }
     */
-    int N = 16, K = 20;
+    int N = 4, K = 20;
     char n;
-    Sudoku* sudoku = new Sudoku(N, K);
     while(1){
         switch (sta) {
         case 1:  //  main page
@@ -65,7 +64,7 @@ int main() {
             if (n == 'E') K = 0.5 * N * N;
             else if (n == 'M') K = 0.6 * N * N;
             else if (n == 'H') K = 0.75 * N * N;
-            else if (n == 'T') K = 3;
+            else if (n == 'T') K = 2;
 
             sta = 2;
             break;
@@ -83,6 +82,9 @@ int main() {
                 else if (n == 106 && y - 1 >= 0) y -= 1;  //  left
                 else if (n == 107 && x + 1 < N) x += 1;  //  down
                 else if (n == 108 && y + 1 < N) y += 1;  //  right
+                else if (n == 104) sudoku->ah(x, y);  //  ask for hint
+                else if (sudoku->ctoi(n) != 0) ;
+                else cout << "Your input " << n << " is an unvalid command.\n";
 
                 sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
 

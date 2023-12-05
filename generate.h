@@ -99,7 +99,6 @@ public:
     {
         for (int i = 0; i < N; i = i + SRN)
         {
-
             // for diagonal box, start coordinates->i==j
             fillBox(i, i);
         }
@@ -219,18 +218,8 @@ public:
         mt19937 mt(time(nullptr));
         int count = K;
         while (count != 0) {
-            //int cellId = randomGenerator(N * N) - 1;
-            //int cellId = mt() % (N * N);
-            // System.out.println(cellId);
-            // extract coordinates i and j
-            //int i = (cellId / N);
-            //int j = cellId % N;
             int i = mt() % N;
             int j = mt() % N;
-            /*if (j != 0) {
-                j = j - 1;
-            }*/
-            // System.out.println(i+" "+j);
             if (mat[i][j] != 0) {
                 count--;
                 mat[i][j] = 0;
@@ -311,7 +300,7 @@ public:
                 this->ptv(n, '-');
             }
         }
-        cout << "press 'ESC' to leave\n\n\n";
+        cout << "press 'ESC' to leave\npress H to get a hint\n\n\n";
 
         if (ise) ptc();
     };
@@ -342,5 +331,10 @@ public:
         else {
             return 0;
         }
+    };
+
+    //  work if someone ask for a hint
+    void ah(int i, int j) {
+        mat[i][j] = ans[i][j];
     };
 };
