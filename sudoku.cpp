@@ -44,6 +44,11 @@ int main(){
     
     int N = 9, K = 20;
     char n;
+    Sudoku* sudoku = new Sudoku(N, K);
+    while (1) {
+        cin >> n;
+        cout << sudoku->ifn(n) << endl;
+    }
     sta = 1;
     switch (sta) {
         case 1:  //  main page

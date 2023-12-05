@@ -263,7 +263,7 @@ public:
 
     //  print the sudoku pattren
     void pt(int n, int x, int y, int uin) {
-        mat[x][y] = uin;
+        if(uin != 0) mat[x][y] = uin;
         //sta = n;
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
@@ -304,10 +304,10 @@ public:
     //  check if n belongs numbers to fill in
     int ifn(char n) {
         n = toupper(n);
-        if (n > 32 && n < 42) {  //  if n belongs 0 ~ 9
+        if (n > 48 && n < 58) {  //  if n belongs 1 ~ 9
             return  n - '0';
         }
-        else if (n > 48 && n < 56) {  //  if n belongs 10 ~ 16
+        else if (n > 64 && n < 72) {  //  if n belongs 10 ~ 16
             return 9 + n - '@';
         }
         else {
