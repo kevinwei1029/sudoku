@@ -45,7 +45,7 @@ int main() {
     char n;
     Sudoku* sudoku = new Sudoku(N, K);
     while(1){
-        switch (sudoku->sta) {
+        switch (sta) {
         case 1:  //  main page
             cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
             cin >> n;
@@ -62,21 +62,12 @@ int main() {
                 cin >> n;
                 n = toupper(n);
             }
-            if (n == 'E') {
-                K = 0.5 * N * N;
-            }
-            else if (n == 'M') {
-                K = 0.6 * N * N;
-            }
-            else if (n == 'H') {
-                K = 0.75 * N * N;
-            }
-            else if (n == 'T') {
-                K = 3;
-            }
-            //cout << N << endl;
-            //exit(0);
-            sudoku->sta = 2;
+            if (n == 'E') K = 0.5 * N * N;
+            else if (n == 'M') K = 0.6 * N * N;
+            else if (n == 'H') K = 0.75 * N * N;
+            else if (n == 'T') K = 3;
+
+            sta = 2;
             break;
 
         case 2:  //  in game
@@ -84,7 +75,6 @@ int main() {
             sudoku->fill();
             sudoku->pt(sqrt(N), x, y, 0);
             //sudoku->ptSudoku('a');
-            //exit(0);
             cin >> n;
             while (n != 27) {  //  n != esc
                 ///*
