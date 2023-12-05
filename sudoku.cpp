@@ -54,20 +54,36 @@ int main(){
                 cin >> n;
             }
             N = (n - '0') * (n - '0');
+            cout << "Choose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
+            cin >> n;
+            while (!(n == 'E' || n == 'M' || n == 'H')) {
+                cout << "ERROR\nEnter again";
+                cin >> n;
+            }
+            n = toupper(n);
+            if (n == 'E') {
+                K = 0.5 * N * N;
+            }
+            else if (n == 'M') {
+                K = 0.6 * N * N;
+            }
+            else if(n == 'H') {
+                K = 0.75 * N * N;
+            }
             //cout << N << endl;
             //exit(0);
             sta = 2;
             
-
         case 2:  //  in game
             Sudoku* sudoku = new Sudoku(N, K);
             sudoku->fill();
             //sudoku->ptSudoku('a');
             //exit(0);
-            while (1) {
+            while (n != 27) {  //  n != esc
                 ///*
                 sudoku->pt(sqrt(N), x, y);
                 cin >> n;
+                n = tolower(n);
                 if (n == 105 && x-1 >= 0) {  //  upward
                     x -= 1;
                 }
@@ -80,12 +96,9 @@ int main(){
                 else if (n == 108 && y+1 < N) {  //  right
                     y += 1;
                 }
-                else if (n == 27) {  //  esc
-                    sta = 1;
-                    break;
-                }
                 //*/
             }
+            sta = 1;
             break;
     }
 }
