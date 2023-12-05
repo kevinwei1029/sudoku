@@ -307,7 +307,7 @@ public:
 
     //  work if someone ask for a hint
     void ah(int i, int j) {
-        if(mat[i][j] == 0)
+        if(mat[i][j] != 0)
             cout << "Your input h is an unvalid command.\n";
         else
             mat[i][j] = ans[i][j];
