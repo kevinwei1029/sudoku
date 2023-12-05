@@ -322,7 +322,7 @@ public:
     };
 
     //  set the color of output
-    //  website : 
+    //  website : https://blog.wildsky.cc/posts/c-code-note
     void SetColor(int color = 7)
     {
         HANDLE hConsole;

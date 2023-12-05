@@ -91,6 +91,8 @@ int main() {
                 cin >> n;
                 //*/
             }
+            x = y = 0;
+            sta = 1;
             break;
         }
     }
