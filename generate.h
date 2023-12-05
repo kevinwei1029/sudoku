@@ -1,4 +1,3 @@
-//  Codes in this file generate the quesion
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -13,12 +12,9 @@ public:
 
     //  number of columns and rows.
     int N;
-    //  square root of N
-    int SRN;
     //  numbers of missing digits
     int K;
     //  record the time
-    //int clk;
     time_t clk = time(0);
 
     //  if sudoku end
@@ -33,9 +29,6 @@ public:
         this->N = N;
         this->K = K;
 
-        // Compute square root of N
-        double SRNd = sqrt(N);
-        SRN = (int)SRNd;
         mat = new int* [N];
         ans = new int* [N];
         res = new int* [N];
@@ -58,17 +51,15 @@ public:
     //  Sudoku Generator
     void fill()
     {
-        //  Fill the diagonal of SRN x SRN matrices
+        //  Fill the diagonal of sqrt(N) x sqrt(N) matrices
         fillDiagonal();
 
         // Fill remaining blocks
-        fillr(0, SRN);
+        fillr(0, sqrt(N));
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 ans[i][j] = mat[i][j];
-                //cout << "ans [" << i << "][" << j << "] = " << ans[i][j] << endl;
-                //cout << "ans [" << i << "][" << j << "] was given by mat[" << i << "][" << j << "]\n";
             }
         }
 
@@ -76,10 +67,10 @@ public:
         rkd();
     }
 
-    // Fill the diagonal SRN number of SRN x SRN matrices
+    // Fill the diagonal sqrt(N) number of sqrt(N) x sqrt(N) matrices
     void fillDiagonal()
     {
-        for (int i = 0; i < N; i = i + SRN)
+        for (int i = 0; i < N; i = i + sqrt(N))
         {
             // for diagonal box, start coordinates->i==j
             fillBox(i, i);
@@ -91,8 +82,8 @@ public:
     {
         mt19937 mt(time(nullptr));
         int num;
-        for (int i = 0; i < SRN; i++) {
-            for (int j = 0; j < SRN; j++) {
+        for (int i = 0; i < sqrt(N); i++) {
+            for (int j = 0; j < sqrt(N); j++) {
                 do {
                     //num = randomGenerator(N);
                     num = mt() % N + 1;
@@ -113,18 +104,18 @@ public:
         if (i >= N && j >= N) {
             return true;
         }
-        if (i < SRN) {
-            if (j < SRN) {
-                j = SRN;
+        if (i < sqrt(N)) {
+            if (j < sqrt(N)) {
+                j = sqrt(N);
             }
         }
-        else if (i < N - SRN) {
-            if (j == (int)(i / SRN) * SRN) {
-                j = j + SRN;
+        else if (i < N - sqrt(N)) {
+            if (j == (int)(i / sqrt(N)) * sqrt(N)) {
+                j = j + sqrt(N);
             }
         }
         else {
-            if (j == N - SRN) {
+            if (j == N - sqrt(N)) {
                 i = i + 1;
                 j = 0;
                 if (i >= N) {
@@ -144,25 +135,20 @@ public:
         return false;
     }
 
-    /* Random generator
-    int randomGenerator(int num)
-    {
-        return (int)floor(
-            (float)(rand() / double(RAND_MAX) * num + 1));
-    }*/
     // Check if safe to put in cell
     bool CheckIfSafe(int i, int j, int num)
     {
+        int p = sqrt(N);
         return (
             unr(i, num) && unc(j, num)
-            && unb(i - i % SRN, j - j % SRN, num));
+            && unb(i - i % p, j - j % p, num));
     }
 
     // Returns false if given 3 x 3 block contains num.
     bool unb(int rowStart, int colStart, int num)
     {
-        for (int i = 0; i < SRN; i++) {
-            for (int j = 0; j < SRN; j++) {
+        for (int i = 0; i < sqrt(N); i++) {
+            for (int j = 0; j < sqrt(N); j++) {
                 if (mat[rowStart + i][colStart + j] == num) {
                     return false;
                 }
@@ -321,6 +307,9 @@ public:
 
     //  work if someone ask for a hint
     void ah(int i, int j) {
-        mat[i][j] = ans[i][j];
+        if(mat[i][j] == 0)
+            cout << "Your input h is an unvalid command.\n";
+        else
+            mat[i][j] = ans[i][j];
     };
 };

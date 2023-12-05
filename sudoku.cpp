@@ -56,7 +56,7 @@ int main() {
             else if (n == 'M') K = 0.6 * N * N;
             else if (n == 'H') K = 0.75 * N * N;
             else if (n == 'T') K = 2;
-
+            cout << "K = " << K << endl;
             sta = 2;
             break;
 
