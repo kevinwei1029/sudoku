@@ -59,8 +59,8 @@ int main(){
             while (!(n == 'E' || n == 'M' || n == 'H')) {
                 cout << "ERROR\nEnter again";
                 cin >> n;
+                n = toupper(n);
             }
-            n = toupper(n);
             if (n == 'E') {
                 K = 0.5 * N * N;
             }
@@ -77,24 +77,31 @@ int main(){
         case 2:  //  in game
             Sudoku* sudoku = new Sudoku(N, K);
             sudoku->fill();
+            sudoku->pt(sqrt(N), x, y, 0);
             //sudoku->ptSudoku('a');
             //exit(0);
             while (n != 27) {  //  n != esc
                 ///*
-                sudoku->pt(sqrt(N), x, y);
                 cin >> n;
                 n = tolower(n);
                 if (n == 105 && x-1 >= 0) {  //  upward
                     x -= 1;
+                    sudoku->pt(sqrt(N), x, y, 0);
                 }
                 else if (n == 106 && y-1 >= 0) {  //  left
                     y -= 1;
+                    sudoku->pt(sqrt(N), x, y, 0);
                 }
                 else if (n == 107 && x+1 < N) {  //  down
                     x += 1;
+                    sudoku->pt(sqrt(N), x, y, 0);
                 }
                 else if (n == 108 && y+1 < N) {  //  right
                     y += 1;
+                    sudoku->pt(sqrt(N), x, y, 0);
+                }
+                else if (sudoku->ifn(n) != -1) {
+                    sudoku->pt(sqrt(N), x, y, sudoku->ifn(n));
                 }
                 //*/
             }

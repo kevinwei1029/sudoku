@@ -262,7 +262,8 @@ public:
     };
 
     //  print the sudoku pattren
-    void pt(int n, int x, int y) {
+    void pt(int n, int x, int y, int uin) {
+        mat[x][y] = uin;
         //sta = n;
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
@@ -299,4 +300,18 @@ public:
         hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, color);
     }
+
+    //  check if n belongs numbers to fill in
+    int ifn(char n) {
+        n = toupper(n);
+        if (n > 32 && n < 42) {  //  if n belongs 0 ~ 9
+            return  n - '0';
+        }
+        else if (n > 48 && n < 56) {  //  if n belongs 10 ~ 16
+            return 9 + n - '@';
+        }
+        else {
+            return -1;
+        }
+    };
 };
