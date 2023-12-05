@@ -44,11 +44,7 @@ int main(){
     
     int N = 9, K = 20;
     char n;
-    Sudoku* sudoku = new Sudoku(N, K);
-    while (1) {
-        cin >> n;
-        cout << sudoku->ifn(n) << endl;
-    }
+    cin >> n;
     sta = 1;
     switch (sta) {
         case 1:  //  main page
@@ -105,8 +101,8 @@ int main(){
                     y += 1;
                     sudoku->pt(sqrt(N), x, y, 0);
                 }
-                else if (sudoku->ifn(n) != -1) {
-                    sudoku->pt(sqrt(N), x, y, sudoku->ifn(n));
+                else if (sudoku->ctoi(n) != -1) {
+                    sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
                 }
                 //*/
             }

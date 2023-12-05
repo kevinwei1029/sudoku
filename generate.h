@@ -302,7 +302,7 @@ public:
     }
 
     //  check if n belongs numbers to fill in
-    int ifn(char n) {
+    int ctoi(char n) {
         n = toupper(n);
         if (n > 48 && n < 58) {  //  if n belongs 1 ~ 9
             return  n - '0';
