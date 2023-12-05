@@ -47,6 +47,9 @@ public:
     //  if sudoku end
     bool ise;
 
+    //  construct a cool ending output
+    string cgl = "";
+
     //  Constructor
     Sudoku(int N, int K)
     {
@@ -68,8 +71,7 @@ public:
             ans[i] = new int[N];
             res[i] = new int[N];
 
-            // Initialize all entries as false to indicate
-            // that there are no edges initially
+            // Initialize all entries as false to indicate that there are no edges initially
             memset(mat[i], 0, N * sizeof(int));
             memset(ans[i], 0, N * sizeof(int));
             memset(res[i], 0, N * sizeof(int));
@@ -93,7 +95,7 @@ public:
             }
         }
 
-        // Remove Randomly K digits to make game
+        //  remove K numbers to create quesion
         rkd();
     }
 
@@ -184,8 +186,7 @@ public:
     {
         for (int i = 0; i < SRN; i++) {
             for (int j = 0; j < SRN; j++) {
-                if (mat[rowStart + i][colStart + j]
-                    == num) {
+                if (mat[rowStart + i][colStart + j] == num) {
                     return false;
                 }
             }
@@ -277,7 +278,7 @@ public:
         for (int i = 0; i < N; i++) {
             cout << "|";
             for (int j = 0; j < N; j++) {
-                if (i == x && j == y) {
+                if (i == x && j == y) {  //  if there is where mouse is
                     SetColor(11);
                 }
                 else if (res[i][j] == ans[i][j] && res[i][j] != 0) {  //  correct answer
@@ -299,7 +300,7 @@ public:
                     cout << setw(3) << mat[i][j] + res[i][j];
                 }
 
-                SetColor();
+                SetColor();  //  reset cout color
 
                 if (j % n == n - 1) {
                     cout << " |";
