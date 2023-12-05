@@ -29,18 +29,18 @@ int t3[9][9] = {
 
 class Sudoku {
 public:
+    //  declear 2D array pointer
     int** mat;
     int** ans;
-    
 
-    // number of columns/rows.
+    //  number of columns and rows.
     int N;
-    // square root of N
+    //  square root of N
     int SRN;
-    // No. Of missing digits
+    //  numbers of missing digits
     int K;
 
-    // Constructor
+    //  Constructor
     Sudoku(int N, int K)
     {
         this->N = N;
