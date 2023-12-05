@@ -5,7 +5,7 @@
 #include <Windows.h>
 using namespace std;
 
-int sta, x = 0, y = 0;
+int x = 0, y = 0;
 
 //  testing int array
 /*
@@ -32,7 +32,7 @@ public:
     //  declear 2D array pointer
     int** mat;
     int** ans;
-    int** que;
+    int** res;
 
     //  number of columns and rows.
     int N;
@@ -40,6 +40,11 @@ public:
     int SRN;
     //  numbers of missing digits
     int K;
+
+    int sta = 1;
+
+    //  if sudoku end
+    bool ise;
 
     //  Constructor
     Sudoku(int N, int K)
@@ -52,7 +57,7 @@ public:
         SRN = (int)SRNd;
         mat = new int* [N];
         ans = new int* [N];
-        que = new int* [N];
+        res = new int* [N];
 
         // Create a row for every pointer
         for (int i = 0; i < N; i++)
@@ -60,13 +65,13 @@ public:
             // Note : Rows may not be contiguous
             mat[i] = new int[N];
             ans[i] = new int[N];
-            que[i] = new int[N];
+            res[i] = new int[N];
 
             // Initialize all entries as false to indicate
             // that there are no edges initially
             memset(mat[i], 0, N * sizeof(int));
             memset(ans[i], 0, N * sizeof(int));
-            memset(que[i], 0, N * sizeof(int));
+            memset(res[i], 0, N * sizeof(int));
         }
     }
 
@@ -89,14 +94,6 @@ public:
 
         // Remove Randomly K digits to make game
         rkd();
-
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                que[i][j] = mat[i][j];
-                //cout << "ans [" << i << "][" << j << "] = " << ans[i][j] << endl;
-                //cout << "ans [" << i << "][" << j << "] was given by mat[" << i << "][" << j << "]\n";
-            }
-        }
     }
 
     // Fill the diagonal SRN number of SRN x SRN matrices
@@ -275,8 +272,9 @@ public:
 
     //  print the sudoku pattren
     void pt(int n, int x, int y, int uin) {
-        if (uin != 0 && que[x][y] == 0) {
-            mat[x][y] = uin;
+        ise = true;
+        if (uin != 0 && mat[x][y] == 0) {
+            res[x][y] = uin;
         }
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
@@ -285,18 +283,23 @@ public:
                 if (i == x && j == y) {
                     SetColor(11);
                 }
-                else if (mat[i][j] == ans[i][j]) {  //  correct answer
+                else if (res[i][j] == ans[i][j] && res[i][j] != 0) {  //  correct answer
                     SetColor(10);
                 }
-                else if (mat[i][j] != ans[i][j]) {  //  wrong answer
+                else if (res[i][j] != ans[i][j] && res[i][j] != 0) {  //  wrong answer
                     SetColor(12);
                 }
 
-                if (mat[i][j] == 0 && que[x][y] == 0) {
+                if (res[i][j] + mat[i][j] != ans[i][j]) {
+                    ise = false;
+                }
+
+                if (mat[i][j] == 0 && res[i][j] == 0) {
                     cout << " __";
+                    ise = false;
                 }
                 else {
-                    cout << setw(3) << mat[i][j] + que[i][j];
+                    cout << setw(3) << mat[i][j] + res[i][j];
                 }
 
                 SetColor();
@@ -311,6 +314,14 @@ public:
             }
         }
         cout << "press 'ESC' to leave\n\n\n";
+
+        if (ise) ptc();
+    };
+
+    //  print congradulation
+    void ptc() {
+        cout << "congradulations!\n\n";
+        sta = 1;
     };
 
     //  set the color of output
@@ -332,7 +343,7 @@ public:
             return 9 + n - '@';
         }
         else {
-            return -1;
+            return 0;
         }
     };
 };

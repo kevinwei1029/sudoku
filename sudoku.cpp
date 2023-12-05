@@ -41,11 +41,10 @@ int main(){
         cout << "i = " << 2*i + 5 << " and geRe = " << sudoku->randomGenerator(2*i+5) << endl;
     }
     */
-    
-    int N = 9, K = 20;
+    int N = 16, K = 20;
     char n;
-    sta = 1;
-    switch (sta) {
+    Sudoku* sudoku = new Sudoku(N, K);
+    switch (sudoku->sta) {
         case 1:  //  main page
             cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
             cin >> n;
@@ -57,7 +56,7 @@ int main(){
             cout << "Choose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
             cin >> n;
             n = toupper(n);
-            while (!(n == 'E' || n == 'M' || n == 'H')) {
+            while (!(n == 'E' || n == 'M' || n == 'H' || n == 'T')) {
                 cout << "ERROR\nEnter again : ";
                 cin >> n;
                 n = toupper(n);
@@ -71,9 +70,12 @@ int main(){
             else if(n == 'H') {
                 K = 0.75 * N * N;
             }
+            else if (n == 'T') {
+                K = 3;
+            }
             //cout << N << endl;
             //exit(0);
-            sta = 2;
+            sudoku->sta = 2;
             
         case 2:  //  in game
             Sudoku* sudoku = new Sudoku(N, K);
@@ -81,32 +83,23 @@ int main(){
             sudoku->pt(sqrt(N), x, y, 0);
             //sudoku->ptSudoku('a');
             //exit(0);
+            cin >> n;
             while (n != 27) {  //  n != esc
                 ///*
-                cin >> n;
                 n = tolower(n);
-                if (n == 105 && x-1 >= 0) {  //  upward
-                    x -= 1;
-                    sudoku->pt(sqrt(N), x, y, 0);
-                }
-                else if (n == 106 && y-1 >= 0) {  //  left
-                    y -= 1;
-                    sudoku->pt(sqrt(N), x, y, 0);
-                }
-                else if (n == 107 && x+1 < N) {  //  down
-                    x += 1;
-                    sudoku->pt(sqrt(N), x, y, 0);
-                }
-                else if (n == 108 && y+1 < N) {  //  right
-                    y += 1;
-                    sudoku->pt(sqrt(N), x, y, 0);
-                }
-                else if (sudoku->ctoi(n) != -1) {
-                    sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
-                }
+                if (n == 105 && x-1 >= 0) x -= 1;  //  upward
+                else if (n == 106 && y-1 >= 0) y -= 1;  //  left
+                else if (n == 107 && x+1 < N) x += 1;  //  down
+                else if (n == 108 && y+1 < N) y += 1;  //  right
+
+                sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
+
+                if (sudoku->ise) break;
+
+                cin >> n;
                 //*/
             }
-            sta = 1;
-            break;
+            sudoku->sta = 1;
+            //break;
     }
 }
