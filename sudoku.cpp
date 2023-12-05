@@ -64,10 +64,8 @@ int main() {
             Sudoku * sudoku = new Sudoku(N, K);
             sudoku->fill();
             sudoku->pt(sqrt(N), x, y, 0);
-            //sudoku->ptSudoku('a');
             cin >> n;
             while (n != 27) {  //  n != esc
-                ///*
                 n = tolower(n);
                 if (n == 105 && x - 1 >= 0) x -= 1;  //  upward
                 else if (n == 106 && y - 1 >= 0) y -= 1;  //  left
@@ -82,7 +80,6 @@ int main() {
                 if (sudoku->ise) break;
 
                 cin >> n;
-                //*/
             }
             x = y = 0;
             sta = 1;

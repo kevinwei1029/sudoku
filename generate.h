@@ -40,6 +40,9 @@ public:
     int SRN;
     //  numbers of missing digits
     int K;
+    //  record the time
+    //int clk;
+    time_t clk = time(0);
 
     //  if sudoku end
     bool ise;
@@ -71,6 +74,11 @@ public:
             memset(ans[i], 0, N * sizeof(int));
             memset(res[i], 0, N * sizeof(int));
         }
+
+        clock_t starttm = clock();
+        time_t now = time(0);
+        tm lctm{};
+        localtime_s(&lctm, &now);
     }
 
     //  Sudoku Generator
@@ -254,15 +262,22 @@ public:
         for (int i = 0; i < ((n + 1) * (n + 1) + 2 * n * n); i++) {  //  i < n+1 + (n+1)*n + 2*n*n
             cout << a;
         }
-        cout << "\n";  //  print a vertical line
+        cout << "\n";
     };
 
     //  print the sudoku pattren
     void pt(int n, int x, int y, int uin) {
         ise = true;
+        time_t now = time(0);
+        //  basic setup
+
         if (uin != 0 && mat[x][y] == 0) {
             res[x][y] = uin;
         }
+        //  put user input into arr
+
+        this->ptv(n, '-');
+        cout << now - clk << " seconds have passed since you start this turn.\n";
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
             cout << "|";
@@ -307,7 +322,8 @@ public:
 
     //  print congradulation
     void ptc() {
-        cout << "congradulations!\n\n";
+        time_t now = time(0);
+        cout << "\n\ncongradulations!\nYou spend " << now - clk << " seconds on completing this sudoku.\n\n\n";
     };
 
     //  set the color of output
