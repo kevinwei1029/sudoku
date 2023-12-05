@@ -74,11 +74,6 @@ public:
             memset(ans[i], 0, N * sizeof(int));
             memset(res[i], 0, N * sizeof(int));
         }
-
-        clock_t starttm = clock();
-        time_t now = time(0);
-        tm lctm{};
-        localtime_s(&lctm, &now);
     }
 
     //  Sudoku Generator
@@ -323,7 +318,8 @@ public:
     //  print congradulation
     void ptc() {
         time_t now = time(0);
-        cout << "\n\ncongradulations!\nYou spend " << now - clk << " seconds on completing this sudoku.\n\n\n";
+        cout << "\n\ncongradulations!";
+        cout << "\n\nYou spend " << now - clk << " seconds on completing this sudoku.\n\n\n";
     };
 
     //  set the color of output
