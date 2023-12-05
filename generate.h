@@ -220,14 +220,10 @@ public:
     void rkd()
     {
         mt19937 mt(time(nullptr));
-        int count = K;
-        while (count != 0) {
+        for (int c = K; c > 0; c--) {
             int i = mt() % N;
             int j = mt() % N;
-            if (mat[i][j] != 0) {
-                count--;
-                mat[i][j] = 0;
-            }
+            if (mat[i][j] != 0)  mat[i][j] = 0;
         }
     }
 
