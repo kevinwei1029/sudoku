@@ -73,7 +73,10 @@ int main() {
                 else if (n == 108 && y + 1 < N) y += 1;  //  right
                 else if (n == 104) sudoku->ah(x, y);  //  ask for hint
                 else if (sudoku->ctoi(n) != 0) ;
-                else cout << "Your input " << n << " is an unvalid command.\n";
+                else {
+                    sudoku->ptv(sqrt(N), '-');
+                    sudoku->ptb(sqrt(N), "Your input " + to_string(n) +" is an unvalid command.");//cout << "Your input " << n << " is an unvalid command.\n";
+                }
 
                 sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
 

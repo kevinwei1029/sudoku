@@ -18,6 +18,8 @@ public:
     time_t clk = time(0);
     //  record ask for hint times
     int aht = 0;
+    //  cout the number of blank
+    int bc = 0;
 
     //  if sudoku end
     bool ise;
@@ -185,10 +187,15 @@ public:
     void rkd()
     {
         mt19937 mt(time(nullptr));
-        for (int c = K; c > 0; c--) {
+        int c = K;
+        while (c > 0) {
             int i = mt() % N;
             int j = mt() % N;
-            if (mat[i][j] != 0)  mat[i][j] = 0;
+            if (mat[i][j] != 0)  
+            {
+                mat[i][j] = 0;
+                c--;
+            }
         }
     }
 
@@ -271,6 +278,7 @@ public:
                 if (mat[i][j] == 0 && res[i][j] == 0) {
                     cout << " __";
                     ise = false;
+                    bc++;
                 }
                 else {
                     cout << setw(3) << mat[i][j] + res[i][j];
@@ -289,6 +297,7 @@ public:
         }
         //this->ptb(n, "");
         //this->ptb(n, "");
+        this->ptb(n, "total " + to_string(bc) + " blanks");
         this->ptb(n, "press 'ESC' to leave");
         this->ptb(n, "press 'H' to get a hint");
         this->ptv(n, '-');
