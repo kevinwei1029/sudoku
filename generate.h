@@ -16,6 +16,8 @@ public:
     int K;
     //  record the time
     time_t clk = time(0);
+    //  record ask for hint times
+    int aht = 0;
 
     //  if sudoku end
     bool ise;
@@ -310,6 +312,10 @@ public:
         if(mat[i][j] != 0)
             cout << "Your input h is an unvalid command.\n";
         else
+        {
+            aht++;
             mat[i][j] = ans[i][j];
+            cout << "You have asked for a hint " << aht << " times.\n";
+        }
     };
 };
