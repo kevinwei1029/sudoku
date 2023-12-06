@@ -56,31 +56,31 @@ int main() {
             else if (n == 'M') K = 0.6 * N * N;
             else if (n == 'H') K = 0.75 * N * N;
             else if (n == 'T') K = 2;
-            cout << "K = " << K << endl;
+            //cout << "K = " << K << endl;
             sta = 2;
             break;
 
         case 2:  //  in game
             Sudoku * sudoku = new Sudoku(N, K);
-            sudoku->fill();
-            sudoku->pt(sqrt(N), x, y, 0);
+            sudoku -> fill();
+            sudoku -> ptv(sqrt(N), '-');
+            sudoku -> pt(sqrt(N), x, y, 0);
             cin >> n;
             while (n != 27) {  //  n != esc
+                sudoku -> ptv(sqrt(N), '-');
+
                 n = tolower(n);
                 if (n == 105 && x - 1 >= 0) x -= 1;  //  upward
                 else if (n == 106 && y - 1 >= 0) y -= 1;  //  left
                 else if (n == 107 && x + 1 < N) x += 1;  //  down
                 else if (n == 108 && y + 1 < N) y += 1;  //  right
-                else if (n == 104) sudoku->ah(x, y);  //  ask for hint
-                else if (sudoku->ctoi(n) != 0) ;
-                else {
-                    sudoku->ptv(sqrt(N), '-');
-                    sudoku->ptb(sqrt(N), "Your input " + to_string(n) +" is an unvalid command.");//cout << "Your input " << n << " is an unvalid command.\n";
-                }
+                else if (n == 104) sudoku -> ah(x, y);  //  ask for hint
+                else if (sudoku -> ctoi(n) != 0) ;
+                else sudoku -> ptb(sqrt(N), "Your input " + to_string(n) +" is an unvalid command.");
 
-                sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
+                sudoku -> pt(sqrt(N), x, y, sudoku -> ctoi(n));
 
-                if (sudoku->ise) break;
+                if (sudoku -> ise) break;
 
                 cin >> n;
             }
