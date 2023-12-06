@@ -5,9 +5,10 @@ While playing a 16*16 Sudoku, numbers exceed 9 can be entered by replacing '10' 
 Right after user enter their answers, they can know if their answers are correct by checking the color of numbers on the screen.  
 During the game, users can press 'H' to get the answer of the blank or press 'ESC' to leave the game.  
 
-# Note
-If you download this project, open it with Visual Studio but find it is unable to compile since the compiler tells you that it can't open <stdc++.h>.  
-Although you've pre-installed <stdc++.h>, it's still possible that compiler won't work because I've edited my own <stdc++.h> and added some other headers I usually used.  
+# About Possible Mistakes
+If you download this project and open it with Visual Studio, you may find it's unable to compile since the compiler tells you that it can't open <bits/stdc++.h>.  
+### THAT IS NOT MY FAULT.  
+Although you've pre-installed <bits/stdc++.h>, it's still possible that this code can't be compiled because I've edited my own <bits/stdc++.h> and added some other headers I usually used.  
 Including extra library below in "generate.h" might be helpful.  
 ```c++
 #include <iostream>
