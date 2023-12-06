@@ -65,7 +65,7 @@ public:
         rkd();
     }
 
-    // Fill the diagonal sqrt(N) number of sqrt(N) x sqrt(N) matrices
+    // fill the diagonal sqrt(N) number of sqrt(N) x sqrt(N) matrices
     void fillDiagonal()
     {
         for (int i = 0; i < N; i = i + sqrt(N))
@@ -75,7 +75,7 @@ public:
         }
     }
 
-    // Fill a 3 x 3 matrix.
+    // fill a n*n matrix.
     void fillBox(int row, int col)
     {
         mt19937 mt(time(nullptr));
@@ -133,7 +133,7 @@ public:
         return false;
     }
 
-    // Check if safe to put in cell
+    // check if safe to put in cell
     bool CheckIfSafe(int i, int j, int num)
     {
         int p = sqrt(N);
@@ -142,7 +142,7 @@ public:
             && unb(i - i % p, j - j % p, num));
     }
 
-    // Returns false if given 3 x 3 block contains num.
+    // return false if given n*n block contains num.
     bool unb(int rowStart, int colStart, int num)
     {
         for (int i = 0; i < sqrt(N); i++) {
