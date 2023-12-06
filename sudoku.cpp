@@ -24,6 +24,7 @@ K = how many blanks to remove
 unr = unused in row
 unc = unusedd in column
 unb = unused in box
+cks = check if it is safe to put in box
 fill = create the basic pattren
 fillr = fill in the remaining blanks
 rkd = remove k digits from the array

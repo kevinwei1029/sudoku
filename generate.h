@@ -122,7 +122,7 @@ public:
             }
         }
         for (int num = 1; num <= N; num++) {
-            if (CheckIfSafe(i, j, num)) {
+            if (cks(i, j, num)) {
                 mat[i][j] = num;
                 if (fillr(i, j + 1)) {
                     return true;
@@ -134,7 +134,7 @@ public:
     }
 
     // check if safe to put in cell
-    bool CheckIfSafe(int i, int j, int num)
+    bool cks(int i, int j, int num)
     {
         int p = sqrt(N);
         return (
