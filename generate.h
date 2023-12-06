@@ -224,8 +224,14 @@ public:
     //  print something vertical
     void ptv(int n, char a) {
         for (int i = 0; i < ((n + 1) * (n + 1) + 2 * n * n); i++) {  //  i < n+1 + (n+1)*n + 2*n*n
-            cout << a;
+            if (a == '-') {
+                SetColor(13);
+                cout << a;
+            }
+            else
+                cout << a;
         }
+        SetColor();
         cout << "\n";
     };
 
@@ -235,31 +241,45 @@ public:
         if (s.size() >((n + 1) * (n + 1) + 2 * n * n - 2)) cout << s << endl;
         else {
             int bw = ((n + 1) * (n + 1) + 2 * n * n - 2) - s.size();
-            cout << "|" << s;
+            SetColor(13);
+            cout << "|";
+            SetColor(14);
+            cout << s;
             for (int i = 0; i < bw; i++) {
                 cout << " ";
             }
+            SetColor(13);
             cout << "|\n";
+            SetColor();
         }
+    };
+
+    //  print congradulation
+    void ptc() {
+        time_t now = time(0);
+        SetColor(236);
+        cout << "\n\ncongradulations!";
+        cout << "\n\nYou spend " << now - clk << " seconds on completing this sudoku.\n\n";
+        SetColor();
+        cout << '\n';
     };
 
     //  print the sudoku pattren
     void pt(int n, int x, int y, int uin) {
+        //  basic setup
         ise = true;
         time_t now = time(0);
-        //  basic setup
 
-        if (uin != 0 && mat[x][y] == 0) {
-            res[x][y] = uin;
-        }
         //  put user input into arr
+        if (uin != 0 && mat[x][y] == 0) res[x][y] = uin;
 
-        //this -> ptv(n, '-');
+        //  print the sudoku pattern
         this -> ptb(n, to_string(now - clk) + " seconds have passed since you start this turn.");
-        //cout << now - clk << " seconds have passed since you start this turn.\n";
         this -> ptv(n, '-');
         for (int i = 0; i < N; i++) {
+            SetColor(13);
             cout << "|";
+            SetColor();
             for (int j = 0; j < N; j++) {
                 if (i == x && j == y) {  //  if there is where mouse is
                     SetColor(11);
@@ -287,7 +307,9 @@ public:
                 SetColor();  //  reset cout color
 
                 if (j % n == n - 1) {
+                    SetColor(13);
                     cout << " |";
+                    SetColor();
                 }
             }
             cout << endl;
@@ -304,13 +326,6 @@ public:
         this -> ptv(n, '-');
         bc = 0;
         if (ise) ptc();
-    };
-
-    //  print congradulation
-    void ptc() {
-        time_t now = time(0);
-        cout << "\n\ncongradulations!";
-        cout << "\n\nYou spend " << now - clk << " seconds on completing this sudoku.\n\n\n";
     };
 
     //  set the color of output
@@ -339,12 +354,14 @@ public:
     //  work if someone ask for a hint
     void ah(int i, int j) {
         if(mat[i][j] != 0)
-            cout << "Your input h is an unvalid command.\n";
+            this->ptb(sqrt(N), "Your input h is an unvalid command.");
+            //cout << "Your input h is an unvalid command.\n";
         else
         {
             aht++;
             mat[i][j] = ans[i][j];
-            cout << "You have asked for a hint " << aht << " times.\n";
+            this->ptb(sqrt(N), "You have asked for a hint " + to_string(aht) + " times.");
+            //cout << "You have asked for a hint " << aht << " times.\n";
         }
     };
 };
