@@ -47,7 +47,7 @@ int main() {
                 cin >> n;
             }
             N = (n - '0') * (n - '0');
-            cout << "Choose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
+            cout << "\nChoose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
             cin >> n;
             n = toupper(n);
             while (!(n == 'E' || n == 'M' || n == 'H' || n == 'T')) {
@@ -64,25 +64,25 @@ int main() {
 
         case 2:  //  in game
             Sudoku * sudoku = new Sudoku(N, K);
-            sudoku -> fill();
-            sudoku -> ptv(sqrt(N), '-');
-            sudoku -> pt(sqrt(N), x, y, 0);
+            sudoku->fill();
+            sudoku->ptv(sqrt(N), '-');
+            sudoku->pt(sqrt(N), x, y, 0);
             cin >> n;
             while (n != 45) {  //  n != -
-                sudoku -> ptv(sqrt(N), '-');
+                sudoku->ptv(sqrt(N), '-');
 
                 n = tolower(n);
                 if (n == 105 && x - 1 >= 0) x -= 1;  //  upward
                 else if (n == 106 && y - 1 >= 0) y -= 1;  //  left
                 else if (n == 107 && x + 1 < N) x += 1;  //  down
                 else if (n == 108 && y + 1 < N) y += 1;  //  right
-                else if (n == 104) sudoku -> ah(x, y);  //  ask for hint
-                else if (sudoku -> ctoi(n) != 0) ;
-                else sudoku -> ptb(sqrt(N), "Your input " + to_string(n) +" is an unvalid command.");
+                else if (n == 104) sudoku->ah(x, y);  //  ask for hint
+                else if (sudoku->ctoi(n) != 0) ;
+                else sudoku->ptb(sqrt(N), "Your input " + to_string(n) +" is an unvalid command.");
 
-                sudoku -> pt(sqrt(N), x, y, sudoku -> ctoi(n));
+                sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
 
-                if (sudoku -> ise) break;
+                if (sudoku->ise) break;
 
                 cin >> n;
             }

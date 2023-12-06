@@ -24,8 +24,8 @@ public:
     //  Constructor
     Sudoku(int N, int K)
     {
-        this -> N = N;
-        this -> K = K;
+        this->N = N;
+        this->K = K;
 
         mat = new int* [N];
         ans = new int* [N];
@@ -70,7 +70,7 @@ public:
     {
         for (int i = 0; i < N; i = i + sqrt(N))
         {
-            // for diagonal box, start coordinates -> i==j
+            // for diagonal box, start coordinates->i==j
             fillBox(i, i);
         }
     }
@@ -257,7 +257,7 @@ public:
     void ptc() {
         time_t now = time(0);
         SetColor(236);
-        cout << "\n\ncongradulations!";
+        cout << "\n\n\ncongradulations!";
         cout << "\n\nYou spend " << now - clk << " seconds on completing this sudoku.\n\n";
         SetColor();
         cout << '\n';
@@ -282,8 +282,8 @@ public:
 
         //  print the sudoku pattern
         if (n == 4) ptr();
-        this -> ptb(n, to_string(now - clk) + " seconds have passed since you start this turn.");
-        this -> ptv(n, '-');
+        this->ptb(n, to_string(now - clk) + " seconds have passed since you start this turn.");
+        this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
             SetColor(13);
             cout << "|";
@@ -310,12 +310,12 @@ public:
                 }
             }
             cout << endl;
-            if (i % n == n - 1) this -> ptv(n, '-');
+            if (i % n == n - 1) this->ptv(n, '-');
         }
-        this -> ptb(n, "There are " + to_string(bc) + " blanks remaining.");
-        this -> ptb(n, "press 'ESC' to leave");
-        this -> ptb(n, "press 'H' to get a hint");
-        this -> ptv(n, '-');
+        this->ptb(n, "There are " + to_string(bc) + " blanks remaining.");
+        this->ptb(n, "press 'ESC' to leave");
+        this->ptb(n, "press 'H' to get a hint");
+        this->ptv(n, '-');
         bc = 0;
         if (ise) ptc();
     };
