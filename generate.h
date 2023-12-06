@@ -222,6 +222,20 @@ public:
         cout << "\n";
     };
 
+    //  print a line of blank or with words
+    void ptb(int n, string s) {
+        //cout << "enter ptb\nwidth = " << (n + 1) * (n + 1) + 2 * n * n - 2 << " size of s = " << s.size() << endl;
+        if (s.size() >((n + 1) * (n + 1) + 2 * n * n - 2)) cout << s << endl;
+        else {
+            int bw = ((n + 1) * (n + 1) + 2 * n * n - 2) - s.size();
+            cout << "|" << s;
+            for (int i = 0; i < bw; i++) {
+                cout << " ";
+            }
+            cout << "|\n";
+        }
+    };
+
     //  print the sudoku pattren
     void pt(int n, int x, int y, int uin) {
         ise = true;
@@ -234,7 +248,8 @@ public:
         //  put user input into arr
 
         this->ptv(n, '-');
-        cout << now - clk << " seconds have passed since you start this turn.\n";
+        this->ptb(n, to_string(now - clk) + " seconds have passed since you start this turn.");
+        //cout << now - clk << " seconds have passed since you start this turn.\n";
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
             cout << "|";
@@ -272,7 +287,11 @@ public:
                 this->ptv(n, '-');
             }
         }
-        cout << "press 'ESC' to leave\npress H to get a hint\n\n\n";
+        //this->ptb(n, "");
+        //this->ptb(n, "");
+        this->ptb(n, "press 'ESC' to leave");
+        this->ptb(n, "press 'H' to get a hint");
+        this->ptv(n, '-');
 
         if (ise) ptc();
     };
