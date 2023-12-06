@@ -66,7 +66,7 @@ int main() {
             sudoku -> ptv(sqrt(N), '-');
             sudoku -> pt(sqrt(N), x, y, 0);
             cin >> n;
-            while (n != 27) {  //  n != esc
+            while (n != 45) {  //  n != -
                 sudoku -> ptv(sqrt(N), '-');
 
                 n = tolower(n);
