@@ -297,7 +297,8 @@ public:
         }
         //this->ptb(n, "");
         //this->ptb(n, "");
-        this->ptb(n, "total " + to_string(bc) + " blanks");
+        this->ptb(n, "There are " + to_string(bc) + " blanks remaining.");
+        this->ptb(n, "");
         this->ptb(n, "press 'ESC' to leave");
         this->ptb(n, "press 'H' to get a hint");
         this->ptv(n, '-');
