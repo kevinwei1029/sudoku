@@ -263,6 +263,14 @@ public:
         cout << '\n';
     };
 
+    //  print extra rules of 4*4 sudoku
+    void ptr() {
+        this->ptb(sqrt(N), "");
+        this->ptb(sqrt(N), "use a for " + to_string(this->ctoi('a')) + ", b for " + to_string(this->ctoi('b')) + ", c for " + to_string(this->ctoi('c')) + ", d for " + to_string(this->ctoi('d')) + ",");
+        this->ptb(sqrt(N), "    e for " + to_string(this->ctoi('e')) + ", f for " + to_string(this->ctoi('f')) + ", g for " + to_string(this->ctoi('g')) + ",");
+        this->ptb(sqrt(N), "");
+    };
+
     //  print the sudoku pattren
     void pt(int n, int x, int y, int uin) {
         //  basic setup
@@ -273,6 +281,7 @@ public:
         if (uin != 0 && mat[x][y] == 0) res[x][y] = uin;
 
         //  print the sudoku pattern
+        if (n == 4) ptr();
         this -> ptb(n, to_string(now - clk) + " seconds have passed since you start this turn.");
         this -> ptv(n, '-');
         for (int i = 0; i < N; i++) {
@@ -280,28 +289,17 @@ public:
             cout << "|";
             SetColor();
             for (int j = 0; j < N; j++) {
-                if (i == x && j == y) {  //  where mouse is
-                    SetColor(11);
-                }
-                else if (res[i][j] == ans[i][j] && res[i][j] != 0) {  //  correct answer
-                    SetColor(10);
-                }
-                else if (res[i][j] != ans[i][j] && res[i][j] != 0) {  //  wrong answer
-                    SetColor(12);
-                }
+                if (i == x && j == y) SetColor(11);  //  where mouse is
+                else if (res[i][j] == ans[i][j] && res[i][j] != 0) SetColor(10);  //  correct answer
+                else if (res[i][j] != ans[i][j] && res[i][j] != 0) SetColor(12);  //  wrong answer
 
                 if (res[i][j] + mat[i][j] != ans[i][j]) {
                     ise = false;
-                }
-
-                if (mat[i][j] == 0 && res[i][j] == 0) {
-                    cout << " __";
-                    ise = false;
                     bc++;
                 }
-                else {
-                    cout << setw(3) << mat[i][j] + res[i][j];
-                }
+
+                if (mat[i][j] == 0 && res[i][j] == 0) cout << " __";
+                else cout << setw(3) << mat[i][j] + res[i][j];
 
                 SetColor();
 
