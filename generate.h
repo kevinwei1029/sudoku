@@ -237,8 +237,13 @@ public:
 
     //  print a line of blank or with words
     void ptb(int n, string s) {
-        //cout << "enter ptb\nwidth = " << (n + 1) * (n + 1) + 2 * n * n - 2 << " size of s = " << s.size() << endl;
-        if (s.size() >((n + 1) * (n + 1) + 2 * n * n - 2)) cout << s << endl;
+        if (s.size() >((n + 1) * (n + 1) + 2 * n * n - 2)) {
+            SetColor(13);
+            cout << '|';
+            SetColor(14);
+            cout << s << endl;
+            SetColor();
+        }
         else {
             int bw = ((n + 1) * (n + 1) + 2 * n * n - 2) - s.size();
             SetColor(13);
@@ -281,7 +286,7 @@ public:
             cout << "|";
             SetColor();
             for (int j = 0; j < N; j++) {
-                if (i == x && j == y) {  //  if there is where mouse is
+                if (i == x && j == y) {  //  where mouse is
                     SetColor(11);
                 }
                 else if (res[i][j] == ans[i][j] && res[i][j] != 0) {  //  correct answer
@@ -304,7 +309,7 @@ public:
                     cout << setw(3) << mat[i][j] + res[i][j];
                 }
 
-                SetColor();  //  reset cout color
+                SetColor();
 
                 if (j % n == n - 1) {
                     SetColor(13);
@@ -317,10 +322,7 @@ public:
                 this -> ptv(n, '-');
             }
         }
-        //this -> ptb(n, "");
-        //this -> ptb(n, "");
         this -> ptb(n, "There are " + to_string(bc) + " blanks remaining.");
-        this -> ptb(n, "");
         this -> ptb(n, "press 'ESC' to leave");
         this -> ptb(n, "press 'H' to get a hint");
         this -> ptv(n, '-');
@@ -329,7 +331,7 @@ public:
     };
 
     //  set the color of output
-    //  website : https://blog.wildsky.cc/posts/c-code-note
+    //  refrence website : https://blog.wildsky.cc/posts/c-code-note
     void SetColor(int color = 7)
     {
         HANDLE hConsole;
@@ -355,13 +357,11 @@ public:
     void ah(int i, int j) {
         if(mat[i][j] != 0)
             this->ptb(sqrt(N), "Your input h is an unvalid command.");
-            //cout << "Your input h is an unvalid command.\n";
         else
         {
             aht++;
             mat[i][j] = ans[i][j];
             this->ptb(sqrt(N), "You have asked for a hint " + to_string(aht) + " times.");
-            //cout << "You have asked for a hint " << aht << " times.\n";
         }
     };
 };
