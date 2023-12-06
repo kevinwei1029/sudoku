@@ -31,7 +31,7 @@ rkd = remove k digits from the array
 N = number of columns and rows.
 K = numbers of missing digits
 aht = record ask for hint times
-bc = cout the number of blank
+bc = count the number of blank
 */
 #include "generate.h"
 
