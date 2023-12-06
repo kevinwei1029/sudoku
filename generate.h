@@ -310,9 +310,7 @@ public:
                 }
             }
             cout << endl;
-            if (i % n == n - 1) {
-                this -> ptv(n, '-');
-            }
+            if (i % n == n - 1) this -> ptv(n, '-');
         }
         this -> ptb(n, "There are " + to_string(bc) + " blanks remaining.");
         this -> ptb(n, "press 'ESC' to leave");
