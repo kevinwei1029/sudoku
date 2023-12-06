@@ -10,16 +10,10 @@ public:
     int** mat;
     int** ans;
 
-    //  number of columns and rows.
-    int N;
-    //  numbers of missing digits
-    int K;
+    int N, K, aht = 0, bc = 0;
+
     //  record the time
     time_t clk = time(0);
-    //  record ask for hint times
-    int aht = 0;
-    //  cout the number of blank
-    int bc = 0;
 
     //  if sudoku end
     bool ise;

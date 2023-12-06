@@ -27,6 +27,10 @@ unb = unused in box
 fill = create the basic pattren
 fillr = fill in the remaining blanks
 rkd = remove k digits from the array
+N = number of columns and rows.
+K = numbers of missing digits
+aht = record ask for hint times
+bc = cout the number of blank
 */
 #include "generate.h"
 
@@ -55,7 +59,6 @@ int main() {
             else if (n == 'M') K = 0.6 * N * N;
             else if (n == 'H') K = 0.75 * N * N;
             else if (n == 'T') K = 2;
-            //cout << "K = " << K << endl;
             sta = 2;
             break;
 
