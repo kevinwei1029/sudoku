@@ -84,7 +84,11 @@ int main() {
                 else if (n == 122) sudoku->cz();  //  undo = C^Z
                 else if (n == 121) sudoku->cy();  //  redo = C^Y
                 else if (sudoku->ctoi(n) != 0) ;
-                else sudoku->ptb(sqrt(N), "Your input " + to_string(n) +" is an unvalid command.");
+                else {
+                    string txt = "Your input ";
+                    txt.append(1, n);
+                    sudoku->ptb(sqrt(N), txt + " is an unvalid command.");
+                }
 
                 sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
 
