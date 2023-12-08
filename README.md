@@ -1,5 +1,5 @@
 # Sudoku（數獨） Introduction
-Sudoku requires player fill numbers in blanks to make all of the numbers in any rows, colunmns, and blocks are not repeated.
+Sudoku requires player to fill all of the blanks meanwhile making numbers in any rows, colunmns, and blocks are not repeated.
 
 # Operations and Functions
 User can choose whether they want to play a 4\*4, 9\*9, or 16\*16 Sudoku.  
