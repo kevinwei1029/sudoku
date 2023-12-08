@@ -286,7 +286,7 @@ public:
     //  print the sudoku pattren
     void pt(int n, int x, int y, int uin) {
         //  basic setup
-        ise = true;
+        this->ise = true;
         time_t now = time(0);
 
         //  put user input into arr
@@ -295,15 +295,15 @@ public:
             tem.ix = x;
             tem.jy = y;
             tem.in = uin;
-            mbw.push(tem);
-            while (!mfw.empty()) {
-                mfw.pop();
+            this->mbw.push(tem);
+            while (!this->mfw.empty()) {
+                this->mfw.pop();
             }
             res[x][y] = uin;
         }
 
         //  print the sudoku pattern
-        if (n == 4) ptr();
+        if (n == 4) this->ptr();
         this->ptb(n, to_string(now - clk) + " seconds have passed since you start this turn.");
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
@@ -341,7 +341,7 @@ public:
         this->ptb(n, "press 'Y' to redo an action");
         this->ptv(n, '-');
         bc = 0;
-        if (ise) ptc();
+        if (ise) this->ptc();
     };
 
     //  set the color of output
@@ -381,7 +381,7 @@ public:
 
     //  undo
     void cz() {
-        if (!mbw.empty()) {
+        if (!this->mbw.empty()) {
             //mbw.top().ix;
             x = mbw.top().ix;
             y = mbw.top().jy;
@@ -400,7 +400,7 @@ public:
 
     //  redo
     void cy() {
-        if (!mfw.empty()) {
+        if (!this->mfw.empty()) {
             x = mfw.top().ix;
             y = mfw.top().jy;
             this->res[x][y] = mfw.top().in;
