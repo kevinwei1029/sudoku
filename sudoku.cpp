@@ -100,7 +100,10 @@ int main() {
 
                 sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
 
-                if (sudoku->ise) break;
+                if (sudoku->ise) 
+                {
+                    break;
+                }
 
                 n = _getch();
             }
