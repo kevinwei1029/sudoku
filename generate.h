@@ -77,7 +77,7 @@ public:
         rkd();
     }
 
-    // fill the diagonal sqrt(N) number of sqrt(N) x sqrt(N) matrices
+    //  fill the diagonal sqrt(N) number of sqrt(N) x sqrt(N) matrices
     void fillDiagonal()
     {
         for (int i = 0; i < N; i = i + sqrt(N))
@@ -87,7 +87,7 @@ public:
         }
     }
 
-    // fill a n*n matrix.
+    //  fill a n*n matrix.
     void fillBox(int row, int col)
     {
         mt19937 mt(time(nullptr));
@@ -103,7 +103,7 @@ public:
         }
     }
 
-    // A recursive function to fill remaining matrix
+    //  A recursive function to fill remaining matrix
     bool fillr(int i, int j)
     {
         // System.out.println(i+" "+j);
@@ -145,7 +145,7 @@ public:
         return false;
     }
 
-    // check if safe to put in cell
+    //  check if safe to put in cell
     bool cks(int i, int j, int num)
     {
         int p = sqrt(N);
@@ -154,7 +154,7 @@ public:
             && unb(i - i % p, j - j % p, num));
     }
 
-    // return false if given n*n block contains num.
+    //  return false if given n*n block contains num.
     bool unb(int rowStart, int colStart, int num)
     {
         for (int i = 0; i < sqrt(N); i++) {
@@ -167,7 +167,7 @@ public:
         return true;
     }
 
-    // check in the row for existence
+    //  check in the row for existence
     bool unr(int i, int num)
     {
         for (int j = 0; j < N; j++) {
@@ -178,7 +178,7 @@ public:
         return true;
     }
 
-    // check in the row for existence
+    //  check in the row for existence
     bool unc(int j, int num)
     {
         for (int i = 0; i < N; i++) {
@@ -189,7 +189,7 @@ public:
         return true;
     }
 
-    // Remove the K no. of digits to complete game
+    //  create k blanks to complete game
     void rkd()
     {
         mt19937 mt(time(nullptr));
