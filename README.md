@@ -15,6 +15,7 @@ Including extra library below in "generate.h" might be helpful.
 #include <string>
 #include <iomanip>
 #include <random>
+#include <stack>
 #include <windows.h>
 #include <Windows.h>
 ```
