@@ -307,28 +307,46 @@ public:
             res[x][y] = uin;
         }
 
-        //  print the sudoku pattern
-        if (n == 4) this->ptr();
-        if (aht != 0) this->ptb(sqrt(N), "You have asked for a hint " + to_string(aht) + " times.");
+        //  print the text above sudoku pattern
+        if (n == 4) 
+        {
+            this->ptr();
+        }
+        if (aht != 0) 
+        {
+            this->ptb(sqrt(N), "You have asked for a hint " + to_string(aht) + " times.");
+        }
         this->ptb(n, to_string(now - clk) + " seconds have passed since you start this turn.");
         this->ptv(n, '-');
+
+        //  print the sudoku pattern
         for (int i = 0; i < N; i++) {
             SetColor(13);
             cout << "|";
-            SetColor();
             for (int j = 0; j < N; j++) {
-
+                //  select which color can be used
                 SetColor(c);
-                if (i == x && j == y) SetColor(11);  //  where mouse is
-                else if (res[i][j] == ans[i][j] && res[i][j] != 0) SetColor(10);  //  correct answer
-                else if (res[i][j] != ans[i][j] && res[i][j] != 0) SetColor(12);  //  wrong answer
+                if (i == x && j == y) 
+                {
+                    SetColor(11);  //  where mouse is
+                }
+                else if (res[i][j] == ans[i][j] && res[i][j] != 0) 
+                {
+                    SetColor(10);  //  correct answer
+                }
+                else if (res[i][j] != ans[i][j] && res[i][j] != 0) 
+                {
+                    SetColor(12);  //  wrong answer
+                }
 
+                //  check if sudocu is completed
                 if (res[i][j] + mat[i][j] != ans[i][j])
                 {
                     ise = false;
                     bc++;
                 }
 
+                //  print a number
                 if (mat[i][j] == 0 && res[i][j] == 0) 
                 {
                     cout << " __";
@@ -339,8 +357,7 @@ public:
                 }
                 SetColor();
 
-                SetColor();
-
+                //  check if print a separate line
                 if (j % n == n - 1) {
                     SetColor(13);
                     cout << " |";
@@ -348,18 +365,26 @@ public:
                 }
             }
             cout << endl;
+
+            //  check if print a separate line
             if (i % n == n - 1) 
             {
                 this->ptv(n, '-');
             }
         }
+
+        //  print the text below sudoku pattern
         this->ptb(n, "There are " + to_string(bc) + " blanks remaining.");
         this->ptb(n, "press 'ESC' to leave");
         this->ptb(n, "press 'H' to get a hint");
         this->ptb(n, "press 'Z' to undo an action");
         this->ptb(n, "press 'Y' to redo an action");
         this->ptv(n, '-');
+
+        //  reset blank counter
         bc = 0;
+
+        //  check if sudocu is completed
         if (ise) 
         {
             this->ptc();
