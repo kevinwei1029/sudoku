@@ -53,7 +53,7 @@ int main() {
                 if (n == '-') exit(0);
             }
             N = (n - '0') * (n - '0');
-            cout << "\nChoose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
+            cout << n << "\nChoose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
             n = _getch();
             if (n == '-') exit(0);
             n = toupper(n);
@@ -63,6 +63,7 @@ int main() {
                 if (n == '-') exit(0);
                 n = toupper(n);
             }
+            cout << n << endl;
             if (n == 'E') K = 0.5 * N * N;
             else if (n == 'M') K = 0.6 * N * N;
             else if (n == 'H') K = 0.75 * N * N;
@@ -77,6 +78,8 @@ int main() {
             sudoku->pt(sqrt(N), x, y, 0);
             n = _getch();
             while (n != 27) {  //  n != ESC
+                if (n == '-') exit(0);
+                cout << n << endl;
                 sudoku->ptv(sqrt(N), '-');
 
                 n = tolower(n);
