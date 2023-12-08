@@ -77,8 +77,8 @@ int main() {
             else if (n == 'T') K = 2;
 
             //  enter color
-            co = sudoku->chc();
             while (n != 'Y') {
+                co = sudoku->chc();
                 sudoku->SetColor(sudoku->c);
                 cout << "Do you sure that you want to use this color to start? (Y/N) : ";
                 sudoku->SetColor();

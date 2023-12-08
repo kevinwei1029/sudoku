@@ -415,13 +415,18 @@ public:
     }
 
     int chc() {
-        c = 1;
+        c = 16;
+        cout << '\n';
         while (c < 256) {
-            for (int i = 0; i < 15; i++) {
+            for (int i = 0; i < 16; i++) {
                 if (c < 256) {
                     SetColor(c);
                     cout << "<" << setw(3) << c++ << ">";
                     SetColor();
+                }
+                else
+                {
+                    break;
                 }
             }
             cout << '\n';
