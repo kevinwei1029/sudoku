@@ -46,6 +46,7 @@ int main() {
         case 1:  //  main page
             cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
             cin >> n;
+            if (n == '-') exit(0);
             while (!(n == '2' || n == '3' || n == '4')) {
                 cout << "ERROR\nEnter again : ";
                 cin >> n;
