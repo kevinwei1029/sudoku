@@ -76,11 +76,11 @@ int main() {
                 sudoku->ptv(sqrt(N), '-');
 
                 n = tolower(n);
-                if (n == 105 && x - 1 >= 0) x -= 1;  //  upward
+                if (n == 105 && x - 1 >= 0) x -= 1;  //  up
                 else if (n == 106 && y - 1 >= 0) y -= 1;  //  left
                 else if (n == 107 && x + 1 < N) x += 1;  //  down
                 else if (n == 108 && y + 1 < N) y += 1;  //  right
-                else if (n == 104) sudoku->ah(x, y);  //  ask for hint
+                else if (n == 104) sudoku->ah(x, y);  //  hint
                 else if (n == 122) sudoku->cz();  //  undo = C^Z
                 else if (n == 121) sudoku->cy();  //  redo = C^Y
                 else if (sudoku->ctoi(n) != 0) ;
