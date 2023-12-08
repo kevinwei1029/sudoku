@@ -275,7 +275,7 @@ public:
     void ptc() {
         time_t now = time(0);
         SetColor(236);
-        cout << '\n' << cgl << "\nYou completed a " << N << " * " << N << " Sudoku within " << now - clk << " seconds.";
+        cout << '\n' << cgl << "\nYou completed a " << N << " * " << N << " Sudoku within " << now - clk << " seconds and " << aht << " hints.";
         SetColor();
         cout << '\n';
     };
@@ -308,9 +308,8 @@ public:
         }
 
         //  print the sudoku pattern
-        if (n == 4) {
-            this->ptr();
-        }
+        if (n == 4) this->ptr();
+        if (aht != 0) this->ptb(sqrt(N), "You have asked for a hint " + to_string(aht) + " times.");
         this->ptb(n, to_string(now - clk) + " seconds have passed since you start this turn.");
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
@@ -418,7 +417,6 @@ public:
         else {
             aht++;
             mat[i][j] = ans[i][j];
-            this->ptb(sqrt(N), "You have asked for a hint " + to_string(aht) + " times.");
         }
     };
 

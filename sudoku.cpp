@@ -16,8 +16,8 @@ sudoku.cpp : 此檔案包含 'main' 函式。程式會於該處開始執行及�
 /*ans = answer of sudoku
 que = quesion
 sta = status : 
-            1 = main page
-            2 = in game
+    1 = main page
+    2 = in game
 x, y = as smae as i and j which indicates where you are in the array
 N = n * n
 K = how many blanks to remove
@@ -28,8 +28,8 @@ cks = check if it is safe to put in box
 fill = create the basic pattren
 fillr = fill in the remaining blanks
 rkd = remove k digits from the array
-N = number of columns and rows.
-K = numbers of missing digits
+N = number of columns and rows
+K = numbers of removed digits
 aht = record ask for hint times
 bc = count the number of blank
 mbw = move backward
@@ -89,7 +89,7 @@ int main() {
             co = sudoku->c;
             cout << "color = " << sudoku->c << endl;
 
-            //change state
+            //  change state
             sta = 2;
             break;
 
@@ -111,9 +111,9 @@ int main() {
                 else if ((n == 107 || n == 112) && x + 1 < N)  x += 1;  //  down   =>  pg down  112
                 else if ((n == 106 || n == 106) && y - 1 >= 0) y -= 1;  //  left   =>  home     .
                 else if ((n == 108 || n == 109) && y + 1 < N)  y += 1;  //  right  =>  end      109
-                else if (n == 104) sudoku->ah(x, y);  //  hint
-                else if (n == 122) sudoku->cz();  //  undo = C^Z
-                else if (n == 121) sudoku->cy();  //  redo = C^Y
+                else if (n == 104) sudoku->ah(x, y);                    //  hint
+                else if (n == 122) sudoku->cz();                        //  undo = C^Z
+                else if (n == 121) sudoku->cy();                        //  redo = C^Y
                 else if (sudoku->ctoi(n) != 0) ;
                 else {
                     string txt = "Your input ";
