@@ -4,13 +4,14 @@ using namespace std;
 int x = 0, y = 0, sta = 1;
 
 class Sudoku {
+
 public:
     //  declear 2D array pointer
     int** res;
     int** mat;
     int** ans;
 
-    int N, K, aht = 0, bc = 0, c = 0;
+    int N, K, aht, bc, c;
 
     struct move{
         int ix;
@@ -25,6 +26,7 @@ public:
 
     bool ise;  //  if sudoku end
 
+    //  construct a cool ending output
     string cgl = "\
                                          __      __      __  _             __\n\
   _________  ____  ____ __________ _____/ /_  __/ /___ _/ /_(_)___  ____  / /\n\
@@ -32,11 +34,13 @@ public:
 / /__/ /_/ / / / / /_/ / /  / /_/ / /_/ / /_/ / / /_/ / /_/ / /_/ / / / /_/  \n\
 \\___/\\____/_/ /_/\\__, /_/   \\__,_/\\__,_/\\__,_/_/\\__,_/\\__/_/\\____/_/ /_(_)   \n\
                 /____/                                                       \n\
-";  //  construct a cool ending output
+";
 
     //  Constructor
     Sudoku(int N, int K, int color)
     {
+        aht = bc = c = 0;
+
         this->N = N;
         this->K = K;
         this->c = color;
@@ -45,15 +49,15 @@ public:
         ans = new int* [N];
         res = new int* [N];
 
-        // Create a row for every pointer
+        //  create a row for every pointer
         for (int i = 0; i < N; i++)
         {
-            // Note : Rows may not be contiguous
+            //  note : rows may not be contiguous
             mat[i] = new int[N];
             ans[i] = new int[N];
             res[i] = new int[N];
 
-            // Initialize all entries as false to indicate that there are no edges initially
+            //  initialize all entries as false to indicate that there are no edges initially
             memset(mat[i], 0, N * sizeof(int));
             memset(ans[i], 0, N * sizeof(int));
             memset(res[i], 0, N * sizeof(int));
@@ -160,7 +164,8 @@ public:
     {
         for (int i = 0; i < sqrt(N); i++) {
             for (int j = 0; j < sqrt(N); j++) {
-                if (mat[rowStart + i][colStart + j] == num) {
+                if (mat[rowStart + i][colStart + j] == num)
+                {
                     return false;
                 }
             }
@@ -172,7 +177,8 @@ public:
     bool unr(int i, int num)
     {
         for (int j = 0; j < N; j++) {
-            if (mat[i][j] == num) {
+            if (mat[i][j] == num)
+            {
                 return false;
             }
         }
@@ -183,7 +189,8 @@ public:
     bool unc(int j, int num)
     {
         for (int i = 0; i < N; i++) {
-            if (mat[i][j] == num) {
+            if (mat[i][j] == num)
+            {
                 return false;
             }
         }
@@ -211,19 +218,23 @@ public:
     {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if (a == 'a') {
+                if (a == 'a')
+                {
                     cout << "Now pt ans[][] : \n";
                     cout << setw(3) << to_string(ans[i][j]) + " ";
                 }
-                else if (a == 'm') {
+                else if (a == 'm')
+                {
                     cout << "Now pt mat[][] : \n";
                     cout << setw(3) << to_string(mat[i][j]) + " ";
                 }
-                else if (a == 'r') {
+                else if (a == 'r')
+                {
                     cout << "Now pt res[][] : \n";
                     cout << setw(3) << to_string(res[i][j]) + " ";
                 }
-                else {
+                else
+                {
                     cout << "It's strange since this function dosen't lnow what to print.";
                 }
             }
@@ -235,11 +246,13 @@ public:
     //  print something vertical
     void ptv(int n, char a) {
         for (int i = 0; i < ((n + 1) * (n + 1) + 2 * n * n); i++) {  //  i < n+1 + (n+1)*n + 2*n*n
-            if (a == '-') {
+            if (a == '-')
+            {
                 SetColor(13);
                 cout << a;
             }
-            else {
+            else
+            {
                 cout << a;
             }
         }
@@ -249,14 +262,16 @@ public:
 
     //  print a line of blank or with words
     void ptb(int n, string s) {
-        if (s.size() >((n + 1) * (n + 1) + 2 * n * n - 2)) {
+        if (s.size() >((n + 1) * (n + 1) + 2 * n * n - 2))
+        {
             SetColor(13);
             cout << '|';
             SetColor(14);
             cout << s << endl;
             SetColor();
         }
-        else {
+        else
+        {
             int bw = ((n + 1) * (n + 1) + 2 * n * n - 2) - s.size();
             SetColor(13);
             cout << "|";
@@ -411,7 +426,8 @@ public:
             }
             cout << '\n';
         }
-        cout << "choose a color to show number in the following Sudoku from the chart above,\nor input 7 to use basic color (press enter to sent) : ";
+        cout << "choose a color to show number in the following Sudoku from the chart above,\n\
+or input 7 to use basic color (press enter to sent your reply) : ";
         cin >> c;
         return c;
     };
@@ -447,7 +463,8 @@ public:
 
     //  undo
     void cz() {
-        if (!this->mbw.empty()) {
+        if (!this->mbw.empty())
+        {
             //mbw.top().ix;
             x = mbw.top().ix;
             y = mbw.top().jy;
@@ -468,7 +485,8 @@ public:
 
     //  redo
     void cy() {
-        if (!this->mfw.empty()) {
+        if (!this->mfw.empty())
+        {
             x = mfw.top().ix;
             y = mfw.top().jy;
             this->res[x][y] = mfw.top().in;
