@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <conio.h>
 using namespace std;
 
 int x = 0, y = 0, sta = 1;
@@ -244,7 +243,7 @@ public:
             }
         }
         SetColor();
-        cout << "\n";
+        cout << '\n';
     };
 
     //  print a line of blank or with words
@@ -275,8 +274,7 @@ public:
     void ptc() {
         time_t now = time(0);
         SetColor(236);
-        cout << "\n" << cgl;
-        cout << "\nYou spend " << now - clk << " seconds on completing this sudoku.";
+        cout << '\n' << cgl << "\nYou completed a " << N << " * " << N << " Sudoku within " << now - clk << " seconds.";
         SetColor();
         cout << '\n';
     };
@@ -418,7 +416,7 @@ public:
             //mbw.top().ix;
             x = mbw.top().ix;
             y = mbw.top().jy;
-            this->res[x][y] = 0;
+            this->res[x][y] = mbw.top().in;
             struct move tem;
             tem.ix = mbw.top().ix;
             tem.jy = mbw.top().jy;
