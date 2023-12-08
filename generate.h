@@ -379,40 +379,40 @@ public:
         }
     };
 
-    //  reverse fill in
+    //  undo
     void cz() {
         if (!mbw.empty()) {
             //mbw.top().ix;
             x = mbw.top().ix;
             y = mbw.top().jy;
-            res[x][y] = 0;
+            this->res[x][y] = 0;
             struct move tem;
             tem.ix = mbw.top().ix;
             tem.jy = mbw.top().jy;
             tem.in = mbw.top().in;
-            mfw.push(tem);
-            mbw.pop();
+            this->mfw.push(tem);
+            this->mbw.pop();
         }
         else {
-            ptb(sqrt(N), "Unvalid command.");
+            this->ptb(sqrt(N), "Your input Z is an unvalid command.");
         }
     };
 
-    //  reverse cz
+    //  redo
     void cy() {
         if (!mfw.empty()) {
             x = mfw.top().ix;
             y = mfw.top().jy;
-            res[x][y] = mfw.top().in;
+            this->res[x][y] = mfw.top().in;
             struct move tem;
             tem.ix = mfw.top().ix;
             tem.jy = mfw.top().jy;
             tem.in = mfw.top().in;
-            mbw.push(tem);
-            mfw.pop();
+            this->mbw.push(tem);
+            this->mfw.pop();
         }
         else {
-            ptb(sqrt(N), "Unvalid command.");
+            this->ptb(sqrt(N), "Your input Y is an unvalid command.");
         }
     };
 };

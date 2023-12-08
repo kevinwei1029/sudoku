@@ -81,8 +81,8 @@ int main() {
                 else if (n == 107 && x + 1 < N) x += 1;  //  down
                 else if (n == 108 && y + 1 < N) y += 1;  //  right
                 else if (n == 104) sudoku->ah(x, y);  //  ask for hint
-                else if (n == 122) sudoku->cz();  //  reverse fill in = C^Z
-                else if (n == 121) sudoku->cy();  //  reverse reverse = C^Y
+                else if (n == 122) sudoku->cz();  //  undo = C^Z
+                else if (n == 121) sudoku->cy();  //  redo = C^Y
                 else if (sudoku->ctoi(n) != 0) ;
                 else sudoku->ptb(sqrt(N), "Your input " + to_string(n) +" is an unvalid command.");
 
