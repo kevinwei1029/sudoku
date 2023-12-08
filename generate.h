@@ -270,7 +270,7 @@ public:
         time_t now = time(0);
         SetColor(236);
         cout << "\n" << cgl;
-        cout << "\nYou spend " << now - clk << " seconds on completing this sudoku.\n";
+        cout << "\nYou spend " << now - clk << " seconds on completing this sudoku.";
         SetColor();
         cout << '\n';
     };
