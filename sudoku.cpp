@@ -45,19 +45,22 @@ int main() {
         switch (sta) {
         case 1:  //  main page
             cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
-            cin >> n;
+            n = _getch();
             if (n == '-') exit(0);
             while (!(n == '2' || n == '3' || n == '4')) {
-                cout << "ERROR\nEnter again : ";
-                cin >> n;
+                cout << n << "\nERROR\nEnter again : ";
+                n = _getch();
+                if (n == '-') exit(0);
             }
             N = (n - '0') * (n - '0');
             cout << "\nChoose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
-            cin >> n;
+            n = _getch();
+            if (n == '-') exit(0);
             n = toupper(n);
             while (!(n == 'E' || n == 'M' || n == 'H' || n == 'T')) {
-                cout << "ERROR\nEnter again : ";
-                cin >> n;
+                cout << n << "\nERROR\nEnter again : ";
+                n = _getch();
+                if (n == '-') exit(0);
                 n = toupper(n);
             }
             if (n == 'E') K = 0.5 * N * N;
@@ -72,8 +75,8 @@ int main() {
             sudoku->fill();
             sudoku->ptv(sqrt(N), '-');
             sudoku->pt(sqrt(N), x, y, 0);
-            cin >> n;
-            while (n != 45) {  //  n != -
+            n = _getch();
+            while (n != 27) {  //  n != ESC
                 sudoku->ptv(sqrt(N), '-');
 
                 n = tolower(n);
@@ -95,7 +98,7 @@ int main() {
 
                 if (sudoku->ise) break;
 
-                cin >> n;
+                n = _getch();
             }
             x = y = 0;
             sta = 1;
