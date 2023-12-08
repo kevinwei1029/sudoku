@@ -290,7 +290,7 @@ public:
     void ptc() {
         time_t now = time(0);
         SetColor(236);
-        cout << '\n' << cgl << "\nYou completed a " << N << " * " << N << " Sudoku within " << now - clk << " seconds and " << aht << " hints.";
+        cout << '\n' << cgl << "\nYou completed a " << N << " * " << N << " Sudoku with " << now - clk << " seconds and " << aht << " hints.";
         SetColor();
         cout << '\n';
     };
