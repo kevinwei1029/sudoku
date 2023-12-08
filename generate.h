@@ -95,7 +95,6 @@ public:
         for (int i = 0; i < sqrt(N); i++) {
             for (int j = 0; j < sqrt(N); j++) {
                 do {
-                    //num = randomGenerator(N);
                     num = mt() % N + 1;
                 } while (!unb(row, col, num));
                 mat[row + i][col + j] = num;
@@ -218,8 +217,12 @@ public:
                     cout << "Now pt mat[][] : \n";
                     cout << setw(3) << to_string(mat[i][j]) + " ";
                 }
+                else if (a == 'r') {
+                    cout << "Now pt res[][] : \n";
+                    cout << setw(3) << to_string(res[i][j]) + " ";
+                }
                 else {
-                    cout << "It's strang since this function dosen't lnow what to print.";
+                    cout << "It's strange since this function dosen't lnow what to print.";
                 }
             }
             cout << endl;
@@ -234,8 +237,9 @@ public:
                 SetColor(13);
                 cout << a;
             }
-            else
+            else {
                 cout << a;
+            }
         }
         SetColor();
         cout << "\n";
@@ -303,7 +307,9 @@ public:
         }
 
         //  print the sudoku pattern
-        if (n == 4) this->ptr();
+        if (n == 4) {
+            this->ptr();
+        }
         this->ptb(n, to_string(now - clk) + " seconds have passed since you start this turn.");
         this->ptv(n, '-');
         for (int i = 0; i < N; i++) {
@@ -311,17 +317,33 @@ public:
             cout << "|";
             SetColor();
             for (int j = 0; j < N; j++) {
-                if (i == x && j == y) SetColor(11);  //  where mouse is
-                else if (res[i][j] == ans[i][j] && res[i][j] != 0) SetColor(10);  //  correct answer
-                else if (res[i][j] != ans[i][j] && res[i][j] != 0) SetColor(12);  //  wrong answer
+                if (i == x && j == y) 
+                {
+                    SetColor(11);  //  where mouse is
+                }
+                else if (res[i][j] == ans[i][j] && res[i][j] != 0) 
+                {
+                    SetColor(10);  //  correct answer
+                }
+                else if (res[i][j] != ans[i][j] && res[i][j] != 0) 
+                {
+                    SetColor(12);  //  wrong answer
+                }
 
-                if (res[i][j] + mat[i][j] != ans[i][j]) {
+                if (res[i][j] + mat[i][j] != ans[i][j])
+                {
                     ise = false;
                     bc++;
                 }
 
-                if (mat[i][j] == 0 && res[i][j] == 0) cout << " __";
-                else cout << setw(3) << mat[i][j] + res[i][j];
+                if (mat[i][j] == 0 && res[i][j] == 0) 
+                {
+                    cout << " __";
+                }
+                else 
+                {
+                    cout << setw(3) << mat[i][j] + res[i][j];
+                }
 
                 SetColor();
 
@@ -332,7 +354,10 @@ public:
                 }
             }
             cout << endl;
-            if (i % n == n - 1) this->ptv(n, '-');
+            if (i % n == n - 1) 
+            {
+                this->ptv(n, '-');
+            }
         }
         this->ptb(n, "There are " + to_string(bc) + " blanks remaining.");
         this->ptb(n, "press 'ESC' to leave");
@@ -341,13 +366,15 @@ public:
         this->ptb(n, "press 'Y' to redo an action");
         this->ptv(n, '-');
         bc = 0;
-        if (ise) this->ptc();
+        if (ise) 
+        {
+            this->ptc();
+        }
     };
 
     //  set the color of output
     //  refrence website : https://blog.wildsky.cc/posts/c-code-note
-    void SetColor(int color = 7)
-    {
+    void SetColor(int color = 7) {
         HANDLE hConsole;
         hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, color);
@@ -356,23 +383,27 @@ public:
     //  check if n belongs numbers to fill in
     int ctoi(char n) {
         n = toupper(n);
-        if (n > 48 && n < 58) {  //  if n belongs 1 ~ 9
-            return  n - '0';
+        if (n > 48 && n < 58) 
+        {
+            return  n - '0';  //  if n belongs 1 ~ 9
         }
-        else if (n > 64 && n < 72) {  //  if n belongs 10 ~ 16
-            return 9 + n - '@';
+        else if (n > 64 && n < 72) 
+        {
+            return 9 + n - '@';  //  if n belongs 10 ~ 16
         }
-        else {
+        else 
+        {
             return 0;
         }
     };
 
     //  work if someone ask for a hint
     void ah(int i, int j) {
-        if(mat[i][j] != 0)
-            this->ptb(sqrt(N), "Your input h is an unvalid command.");
-        else
+        if(mat[i][j] != 0) 
         {
+            this->ptb(sqrt(N), "Your input h is an unvalid command.");
+        }
+        else {
             aht++;
             mat[i][j] = ans[i][j];
             this->ptb(sqrt(N), "You have asked for a hint " + to_string(aht) + " times.");
@@ -393,7 +424,8 @@ public:
             this->mfw.push(tem);
             this->mbw.pop();
         }
-        else {
+        else 
+        {
             this->ptb(sqrt(N), "Your input Z is an unvalid command.");
         }
     };
@@ -411,7 +443,8 @@ public:
             this->mbw.push(tem);
             this->mfw.pop();
         }
-        else {
+        else 
+        {
             this->ptb(sqrt(N), "Your input Y is an unvalid command.");
         }
     };
