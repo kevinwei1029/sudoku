@@ -3,6 +3,7 @@ using namespace std;
 
 int x = 0, y = 0, sta = 1;
 
+
 class Sudoku {
 public:
     //  declear 2D array pointer
@@ -12,14 +13,28 @@ public:
 
     int N, K, aht = 0, bc = 0;
 
-    //  record the time
-    time_t clk = time(0);
+    struct move{
+        int ix;
+        int jy;
+        int in;
+    };
 
-    //  if sudoku end
-    bool ise;
+    stack<move> mbw;  //  move backward
+    stack<move> mfw;  //  move foreward
+
+    time_t clk = time(0);  //  record the time
+
+    bool ise;  //  if sudoku end
 
     //  construct a cool ending output
-    string cgl = "";
+    string cgl = "\n\
+                                         __      __      __  _             __\n\
+  _________  ____  ____ __________ _____/ /_  __/ /___ _/ /_(_)___  ____  / /\n\
+ / ___/ __ \\/ __ \\/ __ `/ ___/ __ `/ __  / / / / / __ `/ __/ / __ \\/ __ \\/ / \n\
+/ /__/ /_/ / / / / /_/ / /  / /_/ / /_/ / /_/ / / /_/ / /_/ / /_/ / / / /_/  \n\
+\\___/\\____/_/ /_/\\__, /_/   \\__,_/\\__,_/\\__,_/_/\\__,_/\\__/_/\\____/_/ /_(_)   \n\
+                /____/                                                       \n\
+";
 
     //  Constructor
     Sudoku(int N, int K)
@@ -257,8 +272,8 @@ public:
     void ptc() {
         time_t now = time(0);
         SetColor(236);
-        cout << "\n\n\ncongradulations!";
-        cout << "\n\nYou spend " << now - clk << " seconds on completing this sudoku.\n\n";
+        cout << "\n" << cgl;
+        cout << "\nYou spend " << now - clk << " seconds on completing this sudoku.\n";
         SetColor();
         cout << '\n';
     };
@@ -278,7 +293,17 @@ public:
         time_t now = time(0);
 
         //  put user input into arr
-        if (uin != 0 && mat[x][y] == 0) res[x][y] = uin;
+        if (uin != 0 && mat[x][y] == 0) {
+            struct move tem;
+            tem.ix = x;
+            tem.jy = y;
+            tem.in = uin;
+            mbw.push(tem);
+            while (!mfw.empty()) {
+                mfw.pop();
+            }
+            res[x][y] = uin;
+        }
 
         //  print the sudoku pattern
         if (n == 4) ptr();
@@ -315,6 +340,8 @@ public:
         this->ptb(n, "There are " + to_string(bc) + " blanks remaining.");
         this->ptb(n, "press 'ESC' to leave");
         this->ptb(n, "press 'H' to get a hint");
+        this->ptb(n, "press 'Z' to undo an action");
+        this->ptb(n, "press 'Y' to redo an action");
         this->ptv(n, '-');
         bc = 0;
         if (ise) ptc();
@@ -352,6 +379,43 @@ public:
             aht++;
             mat[i][j] = ans[i][j];
             this->ptb(sqrt(N), "You have asked for a hint " + to_string(aht) + " times.");
+        }
+    };
+
+    //  reverse fill in
+    void cz() {
+        if (!mbw.empty()) {
+            //mbw.top().ix;
+            x = mbw.top().ix;
+            y = mbw.top().jy;
+            res[x][y] = 0;
+            struct move tem;
+            tem.ix = mbw.top().ix;
+            tem.jy = mbw.top().jy;
+            tem.in = mbw.top().in;
+            mfw.push(tem);
+            mbw.pop();
+        }
+        else {
+            ptb(sqrt(N), "Unvalid command.");
+        }
+    };
+
+    //  reverse cz
+    void cy() {
+        if (!mfw.empty()) {
+            x = mfw.top().ix;
+            y = mfw.top().jy;
+            res[x][y] = mfw.top().in;
+            struct move tem;
+            tem.ix = mfw.top().ix;
+            tem.jy = mfw.top().jy;
+            tem.in = mfw.top().in;
+            mbw.push(tem);
+            mfw.pop();
+        }
+        else {
+            ptb(sqrt(N), "Unvalid command.");
         }
     };
 };

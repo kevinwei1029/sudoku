@@ -12,7 +12,7 @@ sudoku.cpp : 此檔案包含 'main' 函式。程式會於該處開始執行及�
   5. 前往 [專案] > [新增項目]，建立新的程式碼檔案，或是前往 [專案] > [新增現有項目]，將現有程式碼檔案新增至專案
   6. 之後要再次開啟此專案時，請前往 [檔案] > [開啟] > [專案]，然後選取 .sln 檔案
 */
-//簡寫變數及函式名稱意義說明：
+//  簡寫變數及函式名稱意義說明：
 /*ans = answer of sudoku
 que = quesion
 sta = status : 
@@ -32,7 +32,10 @@ N = number of columns and rows.
 K = numbers of missing digits
 aht = record ask for hint times
 bc = count the number of blank
+mbw = move backward
+mfw = moveforward
 */
+//  ascii table : https://www.w3resource.com/w3r_images/cpp-for-loop-image-exercise-61.png
 #include "generate.h"
 
 int main() {
@@ -78,6 +81,8 @@ int main() {
                 else if (n == 107 && x + 1 < N) x += 1;  //  down
                 else if (n == 108 && y + 1 < N) y += 1;  //  right
                 else if (n == 104) sudoku->ah(x, y);  //  ask for hint
+                else if (n == 122) sudoku->cz();  //  reverse fill in = C^Z
+                else if (n == 121) sudoku->cy();  //  reverse reverse = C^Y
                 else if (sudoku->ctoi(n) != 0) ;
                 else sudoku->ptb(sqrt(N), "Your input " + to_string(n) +" is an unvalid command.");
 
