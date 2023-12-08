@@ -10,7 +10,7 @@ public:
     int** mat;
     int** ans;
 
-    int N, K, aht = 0, bc = 0;
+    int N, K, aht = 0, bc = 0, c = 0;
 
     struct move{
         int ix;
@@ -35,10 +35,11 @@ public:
 ";  //  construct a cool ending output
 
     //  Constructor
-    Sudoku(int N, int K)
+    Sudoku(int N, int K, int color)
     {
         this->N = N;
         this->K = K;
+        this->c = color;
 
         mat = new int* [N];
         ans = new int* [N];
@@ -317,18 +318,11 @@ public:
             cout << "|";
             SetColor();
             for (int j = 0; j < N; j++) {
-                if (i == x && j == y) 
-                {
-                    SetColor(11);  //  where mouse is
-                }
-                else if (res[i][j] == ans[i][j] && res[i][j] != 0) 
-                {
-                    SetColor(10);  //  correct answer
-                }
-                else if (res[i][j] != ans[i][j] && res[i][j] != 0) 
-                {
-                    SetColor(12);  //  wrong answer
-                }
+
+                SetColor(c);
+                if (i == x && j == y) SetColor(11);  //  where mouse is
+                else if (res[i][j] == ans[i][j] && res[i][j] != 0) SetColor(10);  //  correct answer
+                else if (res[i][j] != ans[i][j] && res[i][j] != 0) SetColor(12);  //  wrong answer
 
                 if (res[i][j] + mat[i][j] != ans[i][j])
                 {
@@ -344,6 +338,7 @@ public:
                 {
                     cout << setw(3) << mat[i][j] + res[i][j];
                 }
+                SetColor();
 
                 SetColor();
 
@@ -379,6 +374,23 @@ public:
         hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, color);
     }
+
+    int chc() {
+        c = 1;
+        while (c < 256) {
+            for (int i = 0; i < 15; i++) {
+                if (c < 256) {
+                    SetColor(c);
+                    cout << "<" << setw(3) << c++ << ">";
+                    SetColor();
+                }
+            }
+            cout << '\n';
+        }
+        cout << "choose a color to show number in the following Sudoku from the chart above,\nor input 7 to use basic color (press enter to sent) : ";
+        cin >> c;
+        return c;
+    };
 
     //  check if n belongs numbers to fill in
     int ctoi(char n) {

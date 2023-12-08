@@ -39,21 +39,28 @@ mfw = moveforward
 #include "generate.h"
 
 int main() {
-    int N = 4, K = 20;
+    int N = 4, K = 2, co = 1;
     char n;
+    Sudoku* sudoku = new Sudoku(N, K, 7);
     while(1){
         switch (sta) {
         case 1:  //  main page
+            //  enter ? * ?
             cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
             n = _getch();
             if (n == '-') exit(0);
-            while (!(n == '2' || n == '3' || n == '4')) {
+            while (sudoku->ctoi(n) < 2 || 4 < sudoku->ctoi(n)) {
+            //while (!(n == '2' || n == '3' || n == '4')) {
                 cout << n << "\nERROR\nEnter again : ";
                 n = _getch();
                 if (n == '-') exit(0);
             }
-            N = (n - '0') * (n - '0');
-            cout << n << "\nChoose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
+            N = sudoku->ctoi(n) * sudoku->ctoi(n);
+            cout << n << '\n';
+            sudoku->ptv(3, '-');
+
+            //  enter difficulty
+            cout <<"\nChoose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
             n = _getch();
             if (n == '-') exit(0);
             n = toupper(n);
@@ -64,15 +71,31 @@ int main() {
                 n = toupper(n);
             }
             cout << n << endl;
+            sudoku->ptv(3, '-');
             if (n == 'E') K = 0.5 * N * N;
             else if (n == 'M') K = 0.6 * N * N;
             else if (n == 'H') K = 0.75 * N * N;
             else if (n == 'T') K = 2;
+
+            //  enter color
+            co = sudoku->chc();
+            while (n != 'Y') {
+                sudoku->SetColor(sudoku->c);
+                cout << "Do you sure that you want to use this color to start? (Y/N) : ";
+                sudoku->SetColor();
+                n = _getch();
+                if (n == '-') exit(0);
+                n = toupper(n);
+            }
+            co = sudoku->c;
+            cout << "color = " << sudoku->c << endl;
+
+            //change state
             sta = 2;
             break;
 
         case 2:  //  in game
-            Sudoku * sudoku = new Sudoku(N, K);
+            Sudoku * sudoku = new Sudoku(N, K, co);
             sudoku->fill();
             sudoku->ptv(sqrt(N), '-');
             sudoku->pt(sqrt(N), x, y, 0);
