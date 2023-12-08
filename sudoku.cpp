@@ -83,10 +83,10 @@ int main() {
                 sudoku->ptv(sqrt(N), '-');
 
                 n = tolower(n);
-                if (n == 105 && x - 1 >= 0) x -= 1;  //  up
-                else if (n == 106 && y - 1 >= 0) y -= 1;  //  left
-                else if (n == 107 && x + 1 < N) x += 1;  //  down
-                else if (n == 108 && y + 1 < N) y += 1;  //  right
+                if      ((n == 105 || n == 105) && x - 1 >= 0) x -= 1;  //  up     =>  pg up    .
+                else if ((n == 107 || n == 112) && x + 1 < N)  x += 1;  //  down   =>  pg down  112
+                else if ((n == 106 || n == 106) && y - 1 >= 0) y -= 1;  //  left   =>  home     .
+                else if ((n == 108 || n == 109) && y + 1 < N)  y += 1;  //  right  =>  end      109
                 else if (n == 104) sudoku->ah(x, y);  //  hint
                 else if (n == 122) sudoku->cz();  //  undo = C^Z
                 else if (n == 121) sudoku->cy();  //  redo = C^Y
@@ -95,6 +95,7 @@ int main() {
                     string txt = "Your input ";
                     txt.append(1, n);
                     sudoku->ptb(sqrt(N), txt + " is an unvalid command.");
+                    //sudoku->ptb(sqrt(N), "Your input " + to_string(n) + " is an unvalid command.");
                 }
 
                 sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));

@@ -416,7 +416,8 @@ public:
             //mbw.top().ix;
             x = mbw.top().ix;
             y = mbw.top().jy;
-            this->res[x][y] = mbw.top().in;
+            this->res[x][y] = 0;
+            //this->res[x][y] = mbw.top().in;
             struct move tem;
             tem.ix = mbw.top().ix;
             tem.jy = mbw.top().jy;
