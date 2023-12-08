@@ -50,7 +50,6 @@ int main() {
             n = _getch();
             if (n == '-') exit(0);
             while (sudoku->ctoi(n) < 2 || 4 < sudoku->ctoi(n)) {
-            //while (!(n == '2' || n == '3' || n == '4')) {
                 cout << n << "\nERROR\nEnter again : ";
                 n = _getch();
                 if (n == '-') exit(0);
@@ -95,6 +94,7 @@ int main() {
             break;
 
         case 2:  //  in game
+            //  create a sudoku
             Sudoku * sudoku = new Sudoku(N, K, co);
             sudoku->fill();
             sudoku->ptv(sqrt(N), '-');
@@ -105,6 +105,7 @@ int main() {
                 cout << n << endl;
                 sudoku->ptv(sqrt(N), '-');
 
+                //  recieve command
                 n = tolower(n);
                 if      ((n == 105 || n == 105) && x - 1 >= 0) x -= 1;  //  up     =>  pg up    .
                 else if ((n == 107 || n == 112) && x + 1 < N)  x += 1;  //  down   =>  pg down  112
@@ -121,15 +122,15 @@ int main() {
                     //sudoku->ptb(sqrt(N), "Your input " + to_string(n) + " is an unvalid command.");
                 }
 
+                //  print updated sudoku pattern
                 sudoku->pt(sqrt(N), x, y, sudoku->ctoi(n));
 
-                if (sudoku->ise) 
-                {
-                    break;
-                }
+                //  check if ended
+                if (sudoku->ise) break;
 
                 n = _getch();
             }
+            //  reset and back to main page
             x = y = 0;
             sta = 1;
             break;
