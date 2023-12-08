@@ -3,7 +3,6 @@ using namespace std;
 
 int x = 0, y = 0, sta = 1;
 
-
 class Sudoku {
 public:
     //  declear 2D array pointer
@@ -26,15 +25,13 @@ public:
 
     bool ise;  //  if sudoku end
 
-    //  construct a cool ending output
-    string cgl = "\n\
-                                         __      __      __  _             __\n\
+    string cgl = "                                         __      __      __  _             __\n\
   _________  ____  ____ __________ _____/ /_  __/ /___ _/ /_(_)___  ____  / /\n\
  / ___/ __ \\/ __ \\/ __ `/ ___/ __ `/ __  / / / / / __ `/ __/ / __ \\/ __ \\/ / \n\
 / /__/ /_/ / / / / /_/ / /  / /_/ / /_/ / /_/ / / /_/ / /_/ / /_/ / / / /_/  \n\
 \\___/\\____/_/ /_/\\__, /_/   \\__,_/\\__,_/\\__,_/_/\\__,_/\\__/_/\\____/_/ /_(_)   \n\
                 /____/                                                       \n\
-";
+";  //  construct a cool ending output
 
     //  Constructor
     Sudoku(int N, int K)
