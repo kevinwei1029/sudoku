@@ -41,12 +41,13 @@ int main() {
     int N = 4, K = 2, co = 1;
     char n;
     Sudoku* sudoku = new Sudoku(N, K, 7);
-    /*for (int i = 0; i < 10; i++)
+    /*for (int i = 0; i < size(sudoku->cgl); i++)
     {
-        sudoku->ptc();
+        //sudoku->ptc();
+        cout << sudoku->cgl[i];
         cout << '\n';
-    }
-    exit(0);*/
+    }*/
+    exit(0);
     while(1){
         switch (sta) {
         case 1:  //  main page
