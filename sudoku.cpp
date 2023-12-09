@@ -34,11 +34,12 @@ aht = record ask for hint times
 bc = count the number of blank
 mbw = move backward
 mfw = moveforward
+co & c = color user choosed
 */
 #include "generate.h"
 
 int main() {
-    int N = 4, K = 2, co = 1;
+    int N = 4, K = 2, co = 0;
     char n;
     Sudoku* sudoku = new Sudoku(N, K, 7);
     /*for (int i = 0; i < size(sudoku->cgl); i++)
@@ -51,6 +52,7 @@ int main() {
     while(1){
         switch (sta) {
         case 1:  //  main page
+
             //  enter ? * ?
             cout << "Welcome to this sudoku game.\nEnter 2, 3, or 4 to start a 4 * 4, 9 * 9, or 16 * 16 Sudoku game : ";
             n = _getch();
@@ -65,12 +67,12 @@ int main() {
             sudoku->ptv(3, '-');
 
             //  enter difficulty
-            cout <<"\nChoose difficulty\nEnter E, M, H to start a game with Easy, Medium, Hard difficulty : ";
+            cout <<"\nChoose difficulty\nEnter E, M, or H to start a game with Easy, Medium, or Hard difficulty : ";
             n = _getch();
             if (n == '-') exit(0);
             n = toupper(n);
             while (!(n == 'E' || n == 'M' || n == 'H' || n == 'T')) {
-                cout << n << "\nERROR\nEnter again : ";
+                cout << n << "\nERROR !\nEnter again : ";
                 n = _getch();
                 if (n == '-') exit(0);
                 n = toupper(n);
@@ -83,20 +85,22 @@ int main() {
             else if (n == 'T') K = 2;
 
             //  enter color
-            while (n != 'Y') {
-                co = sudoku->chc();
-                if (co == 7) {
-                    break;
+            if (co == 0) {
+                while (n != 'Y') {
+                    co = sudoku->chc();
+                    if (co == 7) {
+                        break;
+                    }
+                    sudoku->SetColor(sudoku->c);
+                    cout << "Do you sure that you want to use this color to start? (Y/N) : ";
+                    sudoku->SetColor();
+                    n = _getch();
+                    if (n == '-') exit(0);
+                    n = toupper(n);
                 }
-                sudoku->SetColor(sudoku->c);
-                cout << "Do you sure that you want to use this color to start? (Y/N) : ";
-                sudoku->SetColor();
-                n = _getch();
-                if (n == '-') exit(0);
-                n = toupper(n);
+                co = sudoku->c;
+                cout << "\ncolor code = " << co << endl;
             }
-            co = sudoku->c;
-            cout << "color = " << sudoku->c << endl;
 
             //  change state
             sta = 2;
