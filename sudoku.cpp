@@ -46,8 +46,8 @@ int main() {
         //sudoku->ptc();
         cout << sudoku->cgl[i];
         cout << '\n';
-    }*/
-    exit(0);
+    }
+    exit(0);*/
     while(1){
         switch (sta) {
         case 1:  //  main page
@@ -85,6 +85,9 @@ int main() {
             //  enter color
             while (n != 'Y') {
                 co = sudoku->chc();
+                if (co == 7) {
+                    break;
+                }
                 sudoku->SetColor(sudoku->c);
                 cout << "Do you sure that you want to use this color to start? (Y/N) : ";
                 sudoku->SetColor();
