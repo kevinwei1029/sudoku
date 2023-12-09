@@ -361,7 +361,7 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
         time_t now = time(0);
         mt19937 mt(time(nullptr));
         SetColor(236);
-        cout << '\n' << cgl[ mt() % size(cgl)] << "\nYou completed a " << N << " * " << N << " Sudoku with " << now - clk << " seconds and " << aht << " hints.";
+        cout << '\n' << cgl[ mt() % size(cgl) ] << "\nYou completed a " << N << " * " << N << " Sudoku with " << now - clk << " seconds and " << aht << " hints.\n";
         SetColor();
         cout << '\n';
     };
@@ -485,6 +485,7 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
         SetConsoleTextAttribute(hConsole, color);
     }
 
+    //  allow user to choose color used in the game
     int chc() {
         c = 16;
         cout << '\n';
@@ -502,8 +503,11 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
             }
             cout << '\n';
         }
-        cout << "choose a color to show number in the following Sudoku from the chart above,\n\
-or input 7 to use basic color (press enter to sent your reply) : ";
+        cout << "choose a color to show number in the following Sudoku from the chart above,\n\or ";
+        SetColor(79);
+        cout << "input 7";
+        SetColor(); 
+        cout << " to use basic color (press enter to sent your reply) : ";
         cin >> c;
         return c;
     };
