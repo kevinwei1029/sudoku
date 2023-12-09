@@ -35,18 +35,23 @@ bc = count the number of blank
 mbw = move backward
 mfw = moveforward
 */
-//  ascii table : https://www.w3resource.com/w3r_images/cpp-for-loop-image-exercise-61.png
 #include "generate.h"
 
 int main() {
     int N = 4, K = 2, co = 1;
     char n;
     Sudoku* sudoku = new Sudoku(N, K, 7);
+    /*for (int i = 0; i < 10; i++)
+    {
+        sudoku->ptc();
+        cout << '\n';
+    }
+    exit(0);*/
     while(1){
         switch (sta) {
         case 1:  //  main page
             //  enter ? * ?
-            cout << "Welcome to this sudoku game.\nEnter 2, 3, 4 to start a game with 4*4, 9*9, 16*16 scale : ";
+            cout << "Welcome to this sudoku game.\nEnter 2, 3, or 4 to start a 4 * 4, 9 * 9, or 16 * 16 Sudoku game : ";
             n = _getch();
             if (n == '-') exit(0);
             while (sudoku->ctoi(n) < 2 || 4 < sudoku->ctoi(n)) {
