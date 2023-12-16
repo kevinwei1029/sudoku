@@ -41,7 +41,7 @@ co & c = color user choosed
 int main() {
     int N = 4, K = 2, co = 0;
     char n;
-    Sudoku* sudoku = new Sudoku(N, K, 7);
+    Sudoku* sudoku = new Sudoku(N, K, 1);
     /*for (int i = 0; i < size(sudoku->cgl); i++)
     {
         //sudoku->ptc();
@@ -52,6 +52,7 @@ int main() {
     while(1){
         switch (sta) {
         case 1:  //  main page
+            system("cls");
 
             //  enter ? * ?
             cout << "Welcome to this sudoku game.\nEnter 2, 3, or 4 to start a 4 * 4, 9 * 9, or 16 * 16 Sudoku game : ";
@@ -103,6 +104,7 @@ int main() {
             }
 
             //  change state
+            system("cls");
             sta = 2;
             break;
 
@@ -115,6 +117,7 @@ int main() {
             n = _getch();
             while (n != 27) {  //  n != ESC
                 if (n == '-') exit(0);
+                system("cls");
                 cout << n << endl;
                 sudoku->ptv(sqrt(N), '-');
 
@@ -146,6 +149,7 @@ int main() {
             //  reset and back to main page
             x = y = 0;
             sta = 1;
+            system("pause");
             break;
         }
     }
