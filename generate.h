@@ -119,20 +119,18 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
         ans = new int* [N];
         res = new int* [N];
 
-        //  create a row for every pointer
         for (int i = 0; i < N; i++)
         {
-            //  note : rows may not be contiguous
-            //  mat[i] = ans[i] = res[i] = new int[N];
-            //  code above may fails
             mat[i] = new int[N];
             ans[i] = new int[N];
             res[i] = new int[N];
+        }
 
-            //  initialize all entries as false to indicate that there are no edges initially
-            memset(mat[i], 0, N * sizeof(int));
-            memset(ans[i], 0, N * sizeof(int));
-            memset(res[i], 0, N * sizeof(int));
+        //  reset the value
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                mat[i][j] = ans[i][j] = res[i][j] = 0;
+            }
         }
     }
 
