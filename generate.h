@@ -364,6 +364,15 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
         cout << '\n' << cgl[ mt() % size(cgl) ] << "\nYou completed a " << N << " * " << N << " Sudoku with " << now - clk << " seconds and " << aht << " hints.\n";
         SetColor();
         cout << '\n';
+
+        for (int i = 0; i < N; i++) {
+            delete[] mat[i];
+            delete[] ans[i];
+            delete[] res[i];
+        }
+        delete[] mat;
+        delete[] ans;
+        delete[] res;
     };
 
     //  print extra rules of 4*4 sudoku
