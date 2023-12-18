@@ -149,6 +149,7 @@ int main() {
             //  reset and back to main page
             x = y = 0;
             sta = 1;
+            delete sudoku;
             system("pause");
             break;
         }
