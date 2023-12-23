@@ -272,13 +272,18 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
     {
         mt19937 mt(time(nullptr));
         int c = K;
-        while (c > 0) {
-            int i = mt() % N;
-            int j = mt() % N;
-            if (mat[i][j] != 0)  
-            {
-                mat[i][j] = 0;
-                c--;
+        if (c >= N) {
+            cout << "Remove K ERROR!\n";
+        }
+        else {
+            while (c > 0) {
+                int i = mt() % N;
+                int j = mt() % N;
+                if (mat[i][j] != 0)  
+                {
+                    mat[i][j] = 0;
+                    c--;
+                }
             }
         }
     }
