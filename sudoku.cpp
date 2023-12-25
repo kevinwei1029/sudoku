@@ -41,7 +41,7 @@ co & c = color user choosed
 int main() {
     int N = 4, K = 2, co = 0;
     char n;
-    Sudoku* sudoku = new Sudoku(N, K, 1);
+    Sudoku* sudoku = new Sudoku;
     /*for (int i = 0; i < size(sudoku->cgl); i++)
     {
         //sudoku->ptc();
@@ -100,7 +100,6 @@ int main() {
                     n = toupper(n);
                 }
                 co = sudoku->c;
-                cout << "\ncolor code = " << co << endl;
             }
 
             //  change state
@@ -110,8 +109,7 @@ int main() {
 
         case 2:  //  in game
             //  create a sudoku
-            Sudoku * sudoku = new Sudoku(N, K, co);
-            sudoku->fill();
+            Sudoku *sudoku = new Sudoku(N, K, co);
             sudoku->ptv(sqrt(N), '-');
             sudoku->pt(sqrt(N), x, y, 0);
             n = _getch();
