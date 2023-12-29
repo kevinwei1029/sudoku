@@ -292,7 +292,7 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
 ",  //  an ascii art
     };
 
-    //  Constructor
+    //  Constructor 1
     Sudoku(int N, int K, int color)
     {
         aht = bc = c = 0;
@@ -322,6 +322,48 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
         fill();
     }
 
+    /*Constructor 2
+    Sudoku(int N, int index)
+    {
+        aht = bc = c = 0;
+
+        this->N = N;
+        this->K = 0;
+        this->c = 7;
+
+        mat = new int* [N];
+        ans = new int* [N];
+        res = new int* [N];
+
+        for (int i = 0; i < N; i++)
+        {
+            mat[i] = new int[N];
+            ans[i] = new int[N];
+            res[i] = new int[N];
+        }
+
+        //  reset the value
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                mat[i][j] = ans[i][j] = res[i][j] = 0;
+            }
+        }
+
+        fill();
+
+        ofstream fout;
+        fout.open("sudoku_" + to_string(int(sqrt(N))) + "_" + to_string(index) + ".txt");
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                cout << "Enter for loop\n";
+                fout << ans[i][j] << ' ';
+            }
+            fout << '\n';
+        }
+        fout.close();
+    }*/
+
+    //  Constructor 3
     Sudoku() {
         cout << "game start\nstand by";
         Sleep(1000);
@@ -606,4 +648,31 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
             this->ptb(sqrt(N), "Your input Y is an unvalid command.");
         }
     };
+    
+    //void make()
+    /*void make() {
+        ofstream fout;
+        for (int i = 2; i < 5; i++) {
+            for (int j = 1; j < 11; j++) {
+                fout.open("sudoku_" + to_string(i) + "_" + to_string(j));
+                Sudoku* make = new Sudoku(i*i);
+                fout << i << '\n';
+                for (int m = 0; m < i; m++) {
+                    for (int n = 0; n < i; n++) {
+                        fout << make->ans[m][n] << ' ';
+                    }
+                }
+                fout.close();
+                for (int l = 0; l < i; l++) {
+                    delete[] mat[l];
+                    delete[] ans[l];
+                    delete[] res[l];
+                }
+                delete[] mat;
+                delete[] ans;
+                delete[] res;
+                delete make;
+            }
+        }
+    }*/
 };

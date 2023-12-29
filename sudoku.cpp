@@ -62,6 +62,18 @@ int main() {
                 cout << n << "\nERROR\nEnter again : ";
                 n = _getch();
                 if (n == '-') exit(0);
+                /*
+                else if (n == 'm') {
+                    cout << "Start making sudoku file......";
+
+                    for (int i = 2; i < 5; i++) {
+                        for (int j = 1; j < 11; j++) {
+                            Sudoku* make = new Sudoku(i*i, j);
+                            delete make;
+                        }
+                    }
+                    break;
+                }*/
             }
             N = sudoku->ctoi(n) * sudoku->ctoi(n);
             cout << n << '\n';
