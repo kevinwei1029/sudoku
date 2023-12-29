@@ -115,15 +115,16 @@ int main() {
             }
 
             //  change state
-            system("cls");
             sta = 2;
             break;
 
         case 2:  //  in game
+            cout << "Do you want to use prebuild quesions? (Y/N) : ";
+            n = _getch();
+            n = toupper(n);
+            system("cls");
             //  create a sudoku
-            Sudoku *sudoku = new Sudoku(N, K, co);
-            sudoku->ptv(sqrt(N), '-');
-            sudoku->pt(sqrt(N), x, y, 0);
+            Sudoku *sudoku = new Sudoku(N, K, co, n);
             n = _getch();
             while (n != 27) {  //  n != ESC
                 if (n == '-') exit(0);

@@ -158,7 +158,7 @@ private:
     {
         mt19937 mt(time(nullptr));
         if (K >= N*N) {
-            cout << "Remove K ERROR!\n";
+            cout << "K value ERROR!\n";
         }
         else {
             int c = K;
@@ -170,6 +170,7 @@ private:
                     mat[i][j] = 0;
                     c--;
                 }
+                cout << "c = " << c << '\n';
             }
         }
     }
@@ -293,7 +294,7 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
     };
 
     //  Constructor 1
-    Sudoku(int N, int K, int color)
+    Sudoku(int N, int K, int color, char iff)
     {
         aht = bc = c = 0;
 
@@ -319,7 +320,32 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
             }
         }
 
-        fill();
+        if (iff == 'Y') {
+            mt19937 mt(time(nullptr));
+            ifstream fin;
+            fin.open("./sudoku lib/sudoku_" + to_string(int(sqrt(N))) + "_1.txt");
+            if (fin.fail()) {
+                cout << "ERROR!";
+                exit(0);
+            }
+            cout << "Use build-in sudoku.\n";
+            int num;
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    fin >> num;
+                    ans[i][j] = mat[i][j] = num;
+                }
+            }
+            cout << "Load sudoku sucessfully\n";
+            rkd();
+            cout << "Done rkd\n";
+        }
+        else {
+            fill();
+        }
+
+        ptv(sqrt(N), '-');
+        pt(sqrt(N), x, y, 0);
     }
 
     /*Constructor 2
