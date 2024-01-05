@@ -52,7 +52,7 @@ private:
     //  fill a n*n matrix.
     void fillBox(int row, int col)
     {
-        mt19937 mt(time(nullptr));
+        /*mt19937 mt(time(nullptr));
         int num;
         for (int i = 0; i < sqrt(N); i++) {
             for (int j = 0; j < sqrt(N); j++) {
@@ -60,6 +60,14 @@ private:
                     num = mt() % N + 1;
                 } while (!unb(row, col, num));
                 mat[row + i][col + j] = num;
+            }
+        }*/
+        int num = N, rtn = sqrt(N);
+        while (num > 0) {
+            int i = rand() % rtn;
+            int j = rand() % rtn;
+            if(mat[row + i][col + j] == 0) {
+                mat[row + i][col + j] = num--;
             }
         }
     }
