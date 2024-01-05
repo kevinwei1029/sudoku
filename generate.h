@@ -161,16 +161,14 @@ private:
             cout << "K value ERROR!\n";
         }
         else {
-            int c = K;
-            while (c > 0) {
+            while (K > 0) {
                 int i = mt() % N;
                 int j = mt() % N;
                 if (mat[i][j] != 0)
                 {
                     mat[i][j] = 0;
-                    c--;
+                    K--;
                 }
-                cout << "c = " << c << '\n';
             }
         }
     }
@@ -337,6 +335,7 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
                 }
             }
             cout << "Load sudoku sucessfully\n";
+            fin.close();
             rkd();
             cout << "Done rkd\n";
         }
