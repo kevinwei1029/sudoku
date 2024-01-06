@@ -52,20 +52,11 @@ private:
     //  fill a n*n matrix.
     void fillBox(int row, int col)
     {
-        /*mt19937 mt(time(nullptr));
-        int num;
-        for (int i = 0; i < sqrt(N); i++) {
-            for (int j = 0; j < sqrt(N); j++) {
-                do {
-                    num = mt() % N + 1;
-                } while (!unb(row, col, num));
-                mat[row + i][col + j] = num;
-            }
-        }*/
+        mt19937 mt(random_device{}());
         int num = N, rtn = sqrt(N);
         while (num > 0) {
-            int i = rand() % rtn;
-            int j = rand() % rtn;
+            int i = mt() % rtn;
+            int j = mt() % rtn;
             if(mat[row + i][col + j] == 0) {
                 mat[row + i][col + j] = num--;
             }
@@ -164,7 +155,7 @@ private:
     //  create k blanks to complete game
     void rkd()
     {
-        mt19937 mt(time(nullptr));
+        mt19937 mt(random_device{}());
         if (K >= N*N) {
             cout << "K value ERROR!\n";
         }
@@ -327,7 +318,7 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
         }
 
         if (iff == 'Y') {
-            mt19937 mt(time(nullptr));
+            mt19937 mt(random_device{}());
             ifstream fin;
             fin.open("./sudoku lib/sudoku_" + to_string(int(sqrt(N))) + "_1.txt");
             if (fin.fail()) {
@@ -461,7 +452,7 @@ Yb      Yb   dP 88 Y88 Yb  \"88 88\"Yb   dP__Yb   8I  dY Y8   8P 88.o    dP__Yb 
     //  print congradulation
     void ptc() {
         time_t now = time(0);
-        mt19937 mt(time(nullptr));
+        mt19937 mt(random_device{}());
         SetColor(236);
         cout << '\n' << cgl[ mt() % size(cgl) ] << "\nYou completed a " << N << " * " << N << " Sudoku with " << now - clk << " seconds and " << aht << " hints.\n";
         SetColor();
